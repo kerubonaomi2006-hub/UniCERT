@@ -5,7 +5,7 @@
 **Course Unit:** STU 3101 Programming Project  
 **Author:** Naomi Kerubo Onyambu (Reg No: 24/05290)  
 **Supervisor / Reviewer:** School of Technology Project Committee  
-**Standards Alignment:** NIST CSF 2.0 &bull; KENET-CERT &bull; KE-CIRT/CC &bull; Kenya Data Protection Act 2019  
+**Standards Alignment:** NIST CSF 2.0 &bull; KENET-CERT &bull; KE-CIRT/CC &bull; Kenya Data Protection Act 2019
 
 ---
 
@@ -26,21 +26,26 @@ This project delivers a **centralized, automated Cyber Incident Reporting and Ri
 ## 🚀 Quickstart Guide
 
 ### Prerequisites
+
 - **Node.js** (v18.0.0 or higher recommended, tested on Node v24)
 - Web browser (Chrome, Edge, Firefox, Safari)
-- *(Optional for Java components)* Java Development Kit (JDK 17 or higher) & IntelliJ IDEA / Eclipse
+- _(Optional for Java components)_ Java Development Kit (JDK 17 or higher) & IntelliJ IDEA / Eclipse
 
 ### 1. Launch the Web Application
+
 Open your terminal in the `cyber-incident-reporting-system` directory:
 
 ```bash
 cd cyber-incident-reporting-system
 node server.js
 ```
-*(Or run `npm start`)*
+
+_(Or run `npm start`)_
 
 ### 2. Access the Application
+
 Open your browser and navigate to:
+
 ```
 http://localhost:3000
 ```
@@ -50,6 +55,7 @@ http://localhost:3000
 ## 🖥️ System Modules & Features
 
 ### 1. 📊 Security Operations Center (SOC) Dashboard
+
 - **Real-time KPI Counters:** Total incidents logged, active Critical threats, High risk alerts, open investigations, and resolved/contained count.
 - **Incident Classification Chart:** Horizontal distribution chart visualizing incident frequency across all 8 predefined categories.
 - **Risk Severity & SLA Matrix:** Color-coded breakdown with percentage allocations and target response timelines.
@@ -57,12 +63,14 @@ http://localhost:3000
 - **Live Threat Stream:** Real-time log of recent security incidents with direct click-to-view triage access.
 
 ### 2. 📝 Incident Reporting Wizard (Students & Staff)
+
 - **Structured Fields:** Title, Category, Subcategory, Target Asset, Data Classification, Scope of Impact, Narrative Description, and Technical Indicators (URLs, IPs, email senders, hashes).
 - **Whistleblower / Anonymous Mode:** Checkbox toggle to protect the identity of student/staff whistleblowers when reporting sensitive breaches (e.g. exam leaks or staff misconduct).
-- **Live Dynamic Risk Engine Preview:** Real-time calculation showing predicted Risk Score, Risk Level color badge, SLA, and factor breakdown *as the user fills out the form*.
+- **Live Dynamic Risk Engine Preview:** Real-time calculation showing predicted Risk Score, Risk Level color badge, SLA, and factor breakdown _as the user fills out the form_.
 - **Post-Submission Confirmation:** Instantly issues a unique Ticket ID (e.g. `EDU-CIR-2026-0001`) and displays immediate containment steps for the reporter.
 
 ### 3. 🛡️ Incident Triage & Management Console (IT Security Staff)
+
 - **Multi-Filter & Search:** Real-time filtering by Incident Category, Risk Level (`LOW` to `CRITICAL`), and Lifecycle Status (`NEW`, `UNDER_INVESTIGATION`, `CONTAINED`, `RESOLVED`, `CLOSED`).
 - **Full Incident Detail Modal:**
   - Detailed narrative and technical IoCs.
@@ -75,12 +83,15 @@ http://localhost:3000
 - **Data Export:** Instant CSV export of all logged incidents.
 
 ### 4. 🔍 Public Ticket Tracker
+
 - Allows any student or faculty member to enter their Incident Tracking ID (e.g. `EDU-CIR-2026-0001`) to check investigation progress and official ICT security notices without accessing administrative panels.
 
 ### 5. 🧪 Interactive Risk Assessment Simulator
+
 - Educational sandbox allowing university evaluators and cybersecurity students to test hypothetical threat scenarios (e.g., Computer Lab Ransomware vs Thwarted Phishing) and observe the mathematical formula in action.
 
 ### 6. 📄 Official KENET-CERT Incident Dossier Exporter
+
 - Generates a formally formatted, printable notification document with institutional letterhead, chain-of-custody timestamps, IoCs, and statutory notices ready for submission to `cert@kenet.or.ke` and `incidents@ke-cirt.go.ke`.
 
 ---
@@ -91,16 +102,17 @@ The quantitative risk score $R \in [1, 100]$ is computed as follows:
 
 $$R = \min\left(100, \max\left(5, \left[\left(S_{\text{base}} \times W_{\text{asset}} \times M_{\text{data}} \times M_{\text{scope}}\right) \times 3.8\right] + \Delta_{\text{status}} + \Delta_{\text{impact}}\right)\right)$$
 
-| Factor | Description | Range / Values |
-| :--- | :--- | :--- |
-| $S_{\text{base}}$ | Category Severity $\times$ Subcategory Weight | 5.5 to 13.5 (Data Breach: 9.0, Ransomware: 8.5) |
-| $W_{\text{asset}}$ | Target University Asset Criticality | 0.85 (Personal BYOD) to 1.50 (Exam/Grading Server) |
-| $M_{\text{data}}$ | Data Classification Involved | 0.85 (Public) to 1.50 (Exam Papers / Marking Keys) |
-| $M_{\text{scope}}$ | Operational Blast Radius | 0.95 (Individual) to 1.40 (Campus-Wide) |
-| $\Delta_{\text{status}}$ | Attack State Modifier | $+15$ (Active Ongoing), $+10$ (Compromised), $-12$ (Thwarted) |
-| $\Delta_{\text{impact}}$ | Impact Modifiers | $+8$ (Credentials Entered), $+10$ (Financial Loss/Extortion) |
+| Factor                   | Description                                   | Range / Values                                                |
+| :----------------------- | :-------------------------------------------- | :------------------------------------------------------------ |
+| $S_{\text{base}}$        | Category Severity $\times$ Subcategory Weight | 5.5 to 13.5 (Data Breach: 9.0, Ransomware: 8.5)               |
+| $W_{\text{asset}}$       | Target University Asset Criticality           | 0.85 (Personal BYOD) to 1.50 (Exam/Grading Server)            |
+| $M_{\text{data}}$        | Data Classification Involved                  | 0.85 (Public) to 1.50 (Exam Papers / Marking Keys)            |
+| $M_{\text{scope}}$       | Operational Blast Radius                      | 0.95 (Individual) to 1.40 (Campus-Wide)                       |
+| $\Delta_{\text{status}}$ | Attack State Modifier                         | $+15$ (Active Ongoing), $+10$ (Compromised), $-12$ (Thwarted) |
+| $\Delta_{\text{impact}}$ | Impact Modifiers                              | $+8$ (Credentials Entered), $+10$ (Financial Loss/Extortion)  |
 
 ### Assigned Risk Levels & Response SLAs:
+
 - **CRITICAL ($85 - 100$):** SLA: **< 1 Hour** | Immediate isolation & mandatory KENET-CERT escalation.
 - **HIGH ($70 - 84$):** SLA: **< 4 Hours** | Urgent response & VLAN quarantine.
 - **MEDIUM ($40 - 69$):** SLA: **< 24 Hours** | Standard department investigation.
@@ -132,6 +144,7 @@ node test/test-engine.js
 ```
 
 ### Verification Test Results:
+
 ```
 🧪 Starting Cyber Incident System Verification Suite...
 
@@ -203,11 +216,13 @@ cyber-incident-reporting-system/
 
 ## 📜 Academic Deliverables Mapping (Proposal Table 3.2)
 
-| Task | Key Deliverable | System Coverage |
-| :--- | :--- | :--- |
-| **Task 1** | Approved Proposal Document | Formulates all 4 core system objectives. |
-| **Task 2** | Software Requirements Specification (SRS) | [SRS_DOCUMENTATION.md](file:///c:/Users/HP%20840%20G6/OneDrive/Desktop/Projects/Smart%20Farm/cyber-incident-reporting-system/docs/SRS_DOCUMENTATION.md) |
-| **Task 3** | UI/UX Prototypes & ERD Specification | [SYSTEM_DESIGN_AND_ERD.md](file:///c:/Users/HP%20840%20G6/OneDrive/Desktop/Projects/Smart%20Farm/cyber-incident-reporting-system/docs/SYSTEM_DESIGN_AND_ERD.md) & interactive UI |
-| **Task 4** | Core Functional System Code | Web app + REST API + Java domain models |
-| **Task 5** | Test Evaluation & Audit Report | [test-engine.js](file:///c:/Users/HP%20840%20G6/OneDrive/Desktop/Projects/Smart%20Farm/cyber-incident-reporting-system/test/test-engine.js) (All 6 test suites passed) |
-| **Task 6** | Final Project Report & Demo | Complete runnable application at `http://localhost:3000` |
+| Task       | Key Deliverable                           | System Coverage                                                                                                                                                                  |
+| :--------- | :---------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Task 1** | Approved Proposal Document                | Formulates all 4 core system objectives.                                                                                                                                         |
+| **Task 2** | Software Requirements Specification (SRS) | [SRS_DOCUMENTATION.md](file:///c:/Users/HP%20840%20G6/OneDrive/Desktop/Projects/Smart%20Farm/cyber-incident-reporting-system/docs/SRS_DOCUMENTATION.md)                          |
+| **Task 3** | UI/UX Prototypes & ERD Specification      | [SYSTEM_DESIGN_AND_ERD.md](file:///c:/Users/HP%20840%20G6/OneDrive/Desktop/Projects/Smart%20Farm/cyber-incident-reporting-system/docs/SYSTEM_DESIGN_AND_ERD.md) & interactive UI |
+| **Task 4** | Core Functional System Code               | Web app + REST API + Java domain models                                                                                                                                          |
+| **Task 5** | Test Evaluation & Audit Report            | [test-engine.js](file:///c:/Users/HP%20840%20G6/OneDrive/Desktop/Projects/Smart%20Farm/cyber-incident-reporting-system/test/test-engine.js) (All 6 test suites passed)           |
+| **Task 6** | Final Project Report & Demo               | Complete runnable application at `http://localhost:3000`                                                                                                                         |
+
+# UniCERT
