@@ -1,0 +1,82 @@
+[
+  {
+    "id": "USR-ADM-001",
+    "name": "Prof. David Mutua",
+    "email": "admin@campus.ac.ke",
+    "role": "ADMIN",
+    "identifier": "ADM/002",
+    "department": "Office of the Vice Chancellor / Security Governance",
+    "status": "ACTIVE",
+    "createdAt": "2026-11-01T08:00:00.000Z"
+  },
+  {
+    "id": "USR-IT-001",
+    "name": "Kenneth Ochieng",
+    "email": "tech@campus.ac.ke",
+    "role": "IT_PERSONNEL",
+    "identifier": "ICT/041",
+    "department": "Directorate of ICT & Cyber Defense",
+    "status": "ACTIVE",
+    "createdAt": "2026-11-10T08:00:00.000Z"
+  },
+  {
+    "id": "USR-GEN-001",
+    "name": "Brian Kipchumba",
+    "email": "student@campus.ac.ke",
+    "role": "GENERAL_USER",
+    "identifier": "STD/2026/0481",
+    "department": "School of Technology",
+    "status": "ACTIVE",
+    "createdAt": "2026-11-20T08:00:00.000Z"
+  },
+  {
+    "id": "USR-GEN-002",
+    "name": "Dr. Sarah Wangari",
+    "email": "lecturer@campus.ac.ke",
+    "role": "GENERAL_USER",
+    "identifier": "FAC/084",
+    "department": "Department of Computer Science",
+    "status": "ACTIVE",
+    "createdAt": "2026-11-21T09:30:00.000Z"
+  },
+  {
+    "id": "USR-GEN-005",
+    "name": "Collins Wachira",
+    "email": "wachirawandere@gmail.com",
+    "role": "GENERAL_USER",
+    "identifier": "22/89876",
+    "department": "SOT",
+    "status": "ACTIVE",
+    "createdAt": "2026-11-23T18:11:25.269Z"
+  },
+  {
+    "id": "USR-IT-006",
+    "name": "James Wachira",
+    "email": "jwachira@gmail.com",
+    "role": "IT_PERSONNEL",
+    "identifier": "ICT 6679",
+    "department": "IT",
+    "status": "ACTIVE",
+    "createdAt": "2026-11-24T06:23:47.293Z"
+  },
+  {
+    "id": "USR-GEN-007",
+    "name": "Naomi KERUBO",
+    "email": "naomikerubo2006@gmail.com",
+    "role": "ADMIN",
+    "identifier": "24/05290",
+    "department": "SOT",
+    "status": "ACTIVE",
+    "createdAt": "2026-11-24T07:43:50.239Z"
+  },
+  {
+    "id": "USR-GEN-008",
+    "name": "Rocka",
+    "email": "collinswandere@gmail.com",
+    "role": "GENERAL_USER",
+    "identifier": "IDT 6787",
+    "department": "Financial department",
+    "status": "ACTIVE",
+    "createdAt": "2026-11-24T08:10:41.311Z"
+  }
+]

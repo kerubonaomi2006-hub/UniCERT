@@ -1,0 +1,1155 @@
+[
+  {
+    "id": "EDU-CIR-2026-0013",
+    "title": "Marks altering ",
+    "categoryId": "MALWARE",
+    "subcategoryId": "RANSOMWARE",
+    "assetId": "FINANCE_ERP",
+    "sensitivityId": "EXAM_PAPERS",
+    "scopeId": "CAMPUS_WIDE",
+    "statusId": "ACTIVE_ONGOING",
+    "description": "it occured on 12am ",
+    "indicators": "",
+    "credentialsCompromised": false,
+    "financialLossSuspected": false,
+    "status": "UNDER_INVESTIGATION",
+    "assignedTo": "Naomi kerubo",
+    "reporter": {
+      "name": "Brian Kipchumba",
+      "type": "STUDENT",
+      "email": "05290@campus.ac.ke",
+      "phone": "",
+      "department": "School of Technology",
+      "identifier": "STD/2026/05290",
+      "isAnonymous": false
+    },
+    "assessment": {
+      "color": "#ef4444",
+      "level": "CRITICAL",
+      "score": 100,
+      "slaHours": 1,
+      "slaLabel": "1 Hour (Immediate Emergency Protocol)",
+      "assessedAt": "2026-11-24T12:36:39.415Z",
+      "badgeClass": "badge-critical",
+      "levelLabel": "Critical Risk",
+      "factorBreakdown": {
+        "baseThreat": {
+          "score": 12.32,
+          "category": "Malware & Ransomware",
+          "subcategory": "Ransomware / File Encryption Attack"
+        },
+        "exploitStatus": {
+          "status": "Active & Ongoing Attack (Imminent / Present Damage)",
+          "modifierPoints": 15
+        },
+        "incidentScope": {
+          "level": "Campus-wide / Entire University Institution",
+          "multiplier": 1.4
+        },
+        "dataSensitivity": {
+          "multiplier": 1.5,
+          "classification": "Examination Papers & Marking Keys"
+        },
+        "assetCriticality": {
+          "type": "CRITICAL_FINANCIAL",
+          "asset": "Finance & Student Fee Collection ERP",
+          "weight": 1.45
+        },
+        "additionalFactors": {
+          "bonusPoints": 0,
+          "credentialsCompromised": false,
+          "financialLossSuspected": false
+        }
+      },
+      "levelDescription": "Catastrophic event: active ransomware, examination leak, financial breach, or widespread campus network compromise. Requires immediate KENET-CERT escalation.",
+      "dataProtectionActNotice": false,
+      "kenetEscalationRequired": true
+    },
+    "recommendations": {
+      "itTeamPlaybook": [
+        {
+          "step": 1,
+          "phase": "IDENTIFICATION & TRIAGE",
+          "action": "Validate Incident Scope (1 Hour (Immediate Emergency Protocol))",
+          "details": "Assigned SLA is 1 hour(s). Verify reporter identity, check SIEM / syslog correlation for affected asset [FINANCE_ERP]."
+        },
+        {
+          "step": 2,
+          "phase": "CONTAINMENT",
+          "action": "Network Isolation & Perimeter Quarantine",
+          "details": "Place affected IP / MAC on the isolated quarantine VLAN. Push dynamic firewall block rule at campus perimeter edge gateway."
+        },
+        {
+          "step": 3,
+          "phase": "CONTAINMENT",
+          "action": "Credential Invalidation & Kerberos Ticket Purge",
+          "details": "Force Kerberos ticket-granting service (TGS) reset in Active Directory and revoke refresh tokens on Azure AD / Office 365 tenant."
+        },
+        {
+          "step": 4,
+          "phase": "ERADICATION & FORENSICS",
+          "action": "Volatile RAM & Master Boot Record (MBR) Extraction",
+          "details": "Capture memory dump using LiME / FTK Imager CLI before re-imaging. Extract sample hash and cross-reference with VirusTotal / Hybrid-Analysis."
+        },
+        {
+          "step": 5,
+          "phase": "RECOVERY",
+          "action": "Restore from Immutable Offline Snapshot",
+          "details": "Verify shadow copies and restore affected partition from verified offline backup taken prior to initial compromise date."
+        },
+        {
+          "step": 6,
+          "phase": "POST-INCIDENT",
+          "action": "Lessons Learned & Root Cause Analysis (RCA)",
+          "details": "Compile Root Cause Analysis report within 5 business days. Update firewall rules and schedule targeted cybersecurity awareness training."
+        }
+      ],
+      "reporterActions": [
+        {
+          "step": 1,
+          "action": "Physically disconnect from Campus Network",
+          "details": "Immediately unplug the Ethernet network cable or turn off Wi-Fi on the affected computer. Do NOT power off the computer as volatile RAM contains critical forensic evidence.",
+          "priority": "CRITICAL"
+        },
+        {
+          "step": 2,
+          "action": "DO NOT pay any ransom or communicate with extortionists",
+          "details": "Paying ransom never guarantees decryption and violates university cybersecurity policy. IT retains offline backups.",
+          "priority": "CRITICAL"
+        },
+        {
+          "step": 3,
+          "action": "Photograph the ransom note screen",
+          "details": "Take a clear photograph of the ransom screen showing the exact Bitcoin address, extension, and transaction ID for the forensic dossier.",
+          "priority": "HIGH"
+        },
+        {
+          "step": 4,
+          "action": "Do not plug in USB flash drives",
+          "details": "Avoid connecting personal flash drives or external hard drives to avoid spreading malware to other computers or home devices.",
+          "priority": "HIGH"
+        }
+      ],
+      "complianceActions": [
+        {
+          "action": "Submit Higher Education Incident Notification Form",
+          "entity": "KENET-CERT",
+          "channel": "Email: cert@kenet.or.ke / Hotline: +254 703 044 000",
+          "details": "KENET-CERT facilitates inter-university threat telemetry sharing and ISP coordination. Submit incident artifact dossier.",
+          "urgency": "HIGH"
+        },
+        {
+          "action": "National Cybersecurity Center Incident Filing",
+          "entity": "National KE-CIRT/CC",
+          "channel": "incidents@ke-cirt.go.ke",
+          "details": "Escalate to the National Kenya Computer Incident Response Team under the Communications Authority of Kenya (CA).",
+          "urgency": "MANDATORY"
+        }
+      ]
+    },
+    "triageNotes": [
+      {
+        "text": "Incident reported. Automated risk assessment evaluated Critical Risk (Score: 100/100, SLA: 1 Hour (Immediate Emergency Protocol)).",
+        "author": "System (Automated Risk Engine)",
+        "timestamp": "2026-11-24T12:36:39.415Z"
+      }
+    ],
+    "observedAt": "2026-11-24T12:36:39.117Z",
+    "createdAt": "2026-11-24T12:36:39.415Z",
+    "updatedAt": "2026-11-24T12:39:55.801Z"
+  },
+  {
+    "id": "EDU-CIR-2026-0012",
+    "title": "Hacking",
+    "categoryId": "UNAUTHORIZED_ACCESS",
+    "subcategoryId": "STAFF_EMAIL_HIJACK",
+    "assetId": "LIBRARY_SYSTEM",
+    "sensitivityId": "INTERNAL_CONFIDENTIAL",
+    "scopeId": "CAMPUS_WIDE",
+    "statusId": "ACTIVE_ONGOING",
+    "description": "I was hacked and my data was stolen ",
+    "indicators": "",
+    "credentialsCompromised": false,
+    "financialLossSuspected": true,
+    "status": "RESOLVED",
+    "assignedTo": "Faith Ochieng",
+    "reporter": {
+      "name": "Joseph Martin",
+      "type": "STAFF",
+      "email": "4567student@campus.ac.ke",
+      "phone": "",
+      "department": "School of Technology",
+      "identifier": "STD/2026/0798",
+      "isAnonymous": false
+    },
+    "assessment": {
+      "color": "#f97316",
+      "level": "HIGH",
+      "score": 82,
+      "slaHours": 4,
+      "slaLabel": "4 Hours (Urgent Incident Response)",
+      "assessedAt": "2026-11-24T08:15:38.496Z",
+      "badgeClass": "badge-high",
+      "levelLabel": "High Risk",
+      "factorBreakdown": {
+        "baseThreat": {
+          "score": 9.38,
+          "category": "Unauthorized Access & Account Takeover",
+          "subcategory": "Staff / Faculty Email Hijack for Business Compromise"
+        },
+        "exploitStatus": {
+          "status": "Active & Ongoing Attack (Imminent / Present Damage)",
+          "modifierPoints": 15
+        },
+        "incidentScope": {
+          "level": "Campus-wide / Entire University Institution",
+          "multiplier": 1.4
+        },
+        "dataSensitivity": {
+          "multiplier": 1.15,
+          "classification": "Internal University Communications & Minutes"
+        },
+        "assetCriticality": {
+          "type": "ACADEMIC_RESOURCE",
+          "asset": "Digital Library & E-Resource Repository",
+          "weight": 1
+        },
+        "additionalFactors": {
+          "bonusPoints": 10,
+          "credentialsCompromised": false,
+          "financialLossSuspected": true
+        }
+      },
+      "levelDescription": "Significant security event involving confidential student records, elevated credentials, or critical campus service disruption.",
+      "dataProtectionActNotice": false,
+      "kenetEscalationRequired": true
+    },
+    "recommendations": {
+      "itTeamPlaybook": [
+        {
+          "step": 1,
+          "phase": "IDENTIFICATION & TRIAGE",
+          "action": "Validate Incident Scope (4 Hours (Urgent Incident Response))",
+          "details": "Assigned SLA is 4 hour(s). Verify reporter identity, check SIEM / syslog correlation for affected asset [LIBRARY_SYSTEM]."
+        },
+        {
+          "step": 2,
+          "phase": "CONTAINMENT",
+          "action": "Network Isolation & Perimeter Quarantine",
+          "details": "Place affected IP / MAC on the isolated quarantine VLAN. Push dynamic firewall block rule at campus perimeter edge gateway."
+        },
+        {
+          "step": 3,
+          "phase": "CONTAINMENT",
+          "action": "Credential Invalidation & Kerberos Ticket Purge",
+          "details": "Force Kerberos ticket-granting service (TGS) reset in Active Directory and revoke refresh tokens on Azure AD / Office 365 tenant."
+        },
+        {
+          "step": 4,
+          "phase": "INVESTIGATION",
+          "action": "Audit Log Forensics & Database Query Trace",
+          "details": "Inspect SQL query logs, transaction commit journals, and proxy access logs for unauthorized SELECT / UPDATE statements on student records."
+        },
+        {
+          "step": 6,
+          "phase": "POST-INCIDENT",
+          "action": "Lessons Learned & Root Cause Analysis (RCA)",
+          "details": "Compile Root Cause Analysis report within 5 business days. Update firewall rules and schedule targeted cybersecurity awareness training."
+        }
+      ],
+      "reporterActions": [
+        {
+          "step": 1,
+          "action": "Immediately terminate all active sessions",
+          "details": "Log out of all devices and trigger an emergency session revocation via the student/staff self-service portal.",
+          "priority": "CRITICAL"
+        },
+        {
+          "step": 2,
+          "action": "Check recent fee and course transaction history",
+          "details": "Review registered units, exam bookings, and fee balances for unauthorized alterations or unapproved requests.",
+          "priority": "HIGH"
+        }
+      ],
+      "complianceActions": [
+        {
+          "action": "Submit Higher Education Incident Notification Form",
+          "entity": "KENET-CERT",
+          "channel": "Email: cert@kenet.or.ke / Hotline: +254 703 044 000",
+          "details": "KENET-CERT facilitates inter-university threat telemetry sharing and ISP coordination. Submit incident artifact dossier.",
+          "urgency": "HIGH"
+        }
+      ]
+    },
+    "triageNotes": [
+      {
+        "text": "Pending review ",
+        "author": "Technical Supervisor",
+        "timestamp": "2026-11-24T08:20:01.217Z"
+      },
+      {
+        "text": "Incident reported. Automated risk assessment evaluated High Risk (Score: 82/100, SLA: 4 Hours (Urgent Incident Response)).",
+        "author": "System (Automated Risk Engine)",
+        "timestamp": "2026-11-24T08:15:38.496Z"
+      }
+    ],
+    "observedAt": "2026-11-24T08:15:38.191Z",
+    "createdAt": "2026-11-24T08:15:38.496Z",
+    "updatedAt": "2026-11-24T12:43:42.444Z"
+  },
+  {
+    "id": "EDU-CIR-2026-0011",
+    "title": "Marks altering ",
+    "categoryId": "DATA_BREACH",
+    "subcategoryId": "RESEARCH_IP_THEFT",
+    "assetId": "STUDENT_PORTAL",
+    "sensitivityId": "PII_FINANCIAL",
+    "scopeId": "INDIVIDUAL_ONLY",
+    "statusId": "CONFIRMED_COMPROMISE",
+    "description": "I have checked the system and found out that my marks have been altered without the knowledge of the lecturer",
+    "indicators": "",
+    "credentialsCompromised": true,
+    "financialLossSuspected": false,
+    "status": "UNDER_INVESTIGATION",
+    "assignedTo": "Beatrice Achieng",
+    "reporter": {
+      "name": "Collins Wachira",
+      "type": "STUDENT",
+      "email": "22/89867student@campus.ac.ke",
+      "phone": "",
+      "department": "School of Technology",
+      "identifier": "STD/2026/0485",
+      "isAnonymous": false
+    },
+    "assessment": {
+      "color": "#ef4444",
+      "level": "CRITICAL",
+      "score": 95,
+      "slaHours": 1,
+      "slaLabel": "1 Hour (Immediate Emergency Protocol)",
+      "assessedAt": "2026-11-23T18:32:52.042Z",
+      "badgeClass": "badge-critical",
+      "levelLabel": "Critical Risk",
+      "factorBreakdown": {
+        "baseThreat": {
+          "score": 11.25,
+          "category": "Data Breach & Confidentiality Leak",
+          "subcategory": "Intellectual Property / Academic Research Data Theft"
+        },
+        "exploitStatus": {
+          "status": "Confirmed System Compromise / Data Accessed",
+          "modifierPoints": 10
+        },
+        "incidentScope": {
+          "level": "Individual Student or Staff Member Only",
+          "multiplier": 0.95
+        },
+        "dataSensitivity": {
+          "multiplier": 1.4,
+          "classification": "Personal Identifiable Information (PII) & Fee Records"
+        },
+        "assetCriticality": {
+          "type": "CORE_SERVICE",
+          "asset": "Student Self-Service Portal (ERP)",
+          "weight": 1.35
+        },
+        "additionalFactors": {
+          "bonusPoints": 8,
+          "credentialsCompromised": true,
+          "financialLossSuspected": false
+        }
+      },
+      "levelDescription": "Catastrophic event: active ransomware, examination leak, financial breach, or widespread campus network compromise. Requires immediate KENET-CERT escalation.",
+      "dataProtectionActNotice": true,
+      "kenetEscalationRequired": true
+    },
+    "recommendations": {
+      "itTeamPlaybook": [
+        {
+          "step": 1,
+          "phase": "IDENTIFICATION & TRIAGE",
+          "action": "Validate Incident Scope (1 Hour (Immediate Emergency Protocol))",
+          "details": "Assigned SLA is 1 hour(s). Verify reporter identity, check SIEM / syslog correlation for affected asset [STUDENT_PORTAL]."
+        },
+        {
+          "step": 2,
+          "phase": "CONTAINMENT",
+          "action": "Network Isolation & Perimeter Quarantine",
+          "details": "Place affected IP / MAC on the isolated quarantine VLAN. Push dynamic firewall block rule at campus perimeter edge gateway."
+        },
+        {
+          "step": 3,
+          "phase": "CONTAINMENT",
+          "action": "Credential Invalidation & Kerberos Ticket Purge",
+          "details": "Force Kerberos ticket-granting service (TGS) reset in Active Directory and revoke refresh tokens on Azure AD / Office 365 tenant."
+        },
+        {
+          "step": 4,
+          "phase": "INVESTIGATION",
+          "action": "Audit Log Forensics & Database Query Trace",
+          "details": "Inspect SQL query logs, transaction commit journals, and proxy access logs for unauthorized SELECT / UPDATE statements on student records."
+        },
+        {
+          "step": 6,
+          "phase": "POST-INCIDENT",
+          "action": "Lessons Learned & Root Cause Analysis (RCA)",
+          "details": "Compile Root Cause Analysis report within 5 business days. Update firewall rules and schedule targeted cybersecurity awareness training."
+        }
+      ],
+      "reporterActions": [
+        {
+          "step": 1,
+          "action": "Cease any forwarding or redistribution of leaked records",
+          "details": "Possession and redistribution of leaked exam papers or student PII violates the University Code of Conduct and Kenya Cybercrimes Act.",
+          "priority": "CRITICAL"
+        },
+        {
+          "step": 2,
+          "action": "Document the source of the leaked link/document",
+          "details": "Record URL, WhatsApp group name, or forum where the unauthorized files were discovered.",
+          "priority": "HIGH"
+        }
+      ],
+      "complianceActions": [
+        {
+          "action": "Submit Higher Education Incident Notification Form",
+          "entity": "KENET-CERT",
+          "channel": "Email: cert@kenet.or.ke / Hotline: +254 703 044 000",
+          "details": "KENET-CERT facilitates inter-university threat telemetry sharing and ISP coordination. Submit incident artifact dossier.",
+          "urgency": "HIGH"
+        },
+        {
+          "action": "Formal Breach Notification under Kenya Data Protection Act 2019",
+          "entity": "Office of the Data Protection Commissioner (ODPC Kenya)",
+          "channel": "complaints@odpc.go.ke / Portal: odpc.go.ke",
+          "details": "Section 43 mandates notifying the Data Protection Commissioner within 72 hours of becoming aware of a breach involving personal data of students or staff.",
+          "urgency": "STATUTORY REQUIREMENT"
+        },
+        {
+          "action": "National Cybersecurity Center Incident Filing",
+          "entity": "National KE-CIRT/CC",
+          "channel": "incidents@ke-cirt.go.ke",
+          "details": "Escalate to the National Kenya Computer Incident Response Team under the Communications Authority of Kenya (CA).",
+          "urgency": "MANDATORY"
+        }
+      ]
+    },
+    "triageNotes": [
+      {
+        "text": "Looking into it",
+        "author": "Technical Supervisor",
+        "timestamp": "2026-11-23T18:37:12.256Z"
+      },
+      {
+        "text": "Incident reported. Automated risk assessment evaluated Critical Risk (Score: 95/100, SLA: 1 Hour (Immediate Emergency Protocol)).",
+        "author": "System (Automated Risk Engine)",
+        "timestamp": "2026-11-23T18:32:52.042Z"
+      }
+    ],
+    "observedAt": "2026-11-23T18:32:51.937Z",
+    "createdAt": "2026-11-23T18:32:52.042Z",
+    "updatedAt": "2026-11-23T18:37:12.256Z"
+  },
+  {
+    "id": "EDU-CIR-2026-0010",
+    "title": "PostgreSQL Live Integration Test Incident",
+    "categoryId": "PHISHING",
+    "subcategoryId": "CREDENTIAL_HARVESTING",
+    "assetId": "STUDENT_PORTAL",
+    "sensitivityId": "PII_FINANCIAL",
+    "scopeId": "CAMPUS_WIDE",
+    "statusId": "ACTIVE_ONGOING",
+    "description": "Verifying end-to-end incident persistence in PostgreSQL database.",
+    "indicators": "",
+    "credentialsCompromised": true,
+    "financialLossSuspected": false,
+    "status": "NEW",
+    "assignedTo": "Unassigned (Awaiting SOC Triage)",
+    "reporter": {
+      "name": "Database Test Runner",
+      "type": "STUDENT",
+      "email": "test@campus.ac.ke",
+      "phone": "",
+      "department": "General Campus",
+      "identifier": "N/A",
+      "isAnonymous": false
+    },
+    "assessment": {
+      "color": "#ef4444",
+      "level": "CRITICAL",
+      "score": 92,
+      "slaHours": 1,
+      "slaLabel": "1 Hour (Immediate Emergency Protocol)",
+      "assessedAt": "2026-11-23T17:51:31.079Z",
+      "badgeClass": "badge-critical",
+      "levelLabel": "Critical Risk",
+      "factorBreakdown": {
+        "baseThreat": {
+          "score": 6.9,
+          "category": "Phishing & Social Engineering",
+          "subcategory": "Student / Staff Portal Credential Harvesting"
+        },
+        "exploitStatus": {
+          "status": "Active & Ongoing Attack (Imminent / Present Damage)",
+          "modifierPoints": 15
+        },
+        "incidentScope": {
+          "level": "Campus-wide / Entire University Institution",
+          "multiplier": 1.4
+        },
+        "dataSensitivity": {
+          "multiplier": 1.4,
+          "classification": "Personal Identifiable Information (PII) & Fee Records"
+        },
+        "assetCriticality": {
+          "type": "CORE_SERVICE",
+          "asset": "Student Self-Service Portal (ERP)",
+          "weight": 1.35
+        },
+        "additionalFactors": {
+          "bonusPoints": 8,
+          "credentialsCompromised": true,
+          "financialLossSuspected": false
+        }
+      },
+      "levelDescription": "Catastrophic event: active ransomware, examination leak, financial breach, or widespread campus network compromise. Requires immediate KENET-CERT escalation.",
+      "dataProtectionActNotice": true,
+      "kenetEscalationRequired": true
+    },
+    "recommendations": {
+      "itTeamPlaybook": [
+        {
+          "step": 1,
+          "phase": "IDENTIFICATION & TRIAGE",
+          "action": "Validate Incident Scope (1 Hour (Immediate Emergency Protocol))",
+          "details": "Assigned SLA is 1 hour(s). Verify reporter identity, check SIEM / syslog correlation for affected asset [STUDENT_PORTAL]."
+        },
+        {
+          "step": 2,
+          "phase": "CONTAINMENT",
+          "action": "Network Isolation & Perimeter Quarantine",
+          "details": "Place affected IP / MAC on the isolated quarantine VLAN. Push dynamic firewall block rule at campus perimeter edge gateway."
+        },
+        {
+          "step": 3,
+          "phase": "CONTAINMENT",
+          "action": "Credential Invalidation & Kerberos Ticket Purge",
+          "details": "Force Kerberos ticket-granting service (TGS) reset in Active Directory and revoke refresh tokens on Azure AD / Office 365 tenant."
+        },
+        {
+          "step": 4,
+          "phase": "ERADICATION",
+          "action": "Campus-wide Mailbox Purge (Hard Delete)",
+          "details": "Execute PowerShell compliance search on Exchange/Google Workspace to quarantine matching Message-ID across all student/staff mailboxes."
+        },
+        {
+          "step": 5,
+          "phase": "ERADICATION",
+          "action": "DNS Sinkhole / Edge Web Filter Blacklist",
+          "details": "Add phishing domain and IP to local DNS RPZ (Response Policy Zone) and FortiGuard / Palo Alto URL categorization."
+        },
+        {
+          "step": 6,
+          "phase": "POST-INCIDENT",
+          "action": "Lessons Learned & Root Cause Analysis (RCA)",
+          "details": "Compile Root Cause Analysis report within 5 business days. Update firewall rules and schedule targeted cybersecurity awareness training."
+        }
+      ],
+      "reporterActions": [
+        {
+          "step": 1,
+          "action": "Do not click any embedded links, verify sender identity",
+          "details": "Do not click links or open attachments in the suspicious email/SMS. Official university emails always end with @kca.ac.ke or your institution domain.",
+          "priority": "HIGH"
+        },
+        {
+          "step": 2,
+          "action": "Reset Student / Staff Portal Password immediately",
+          "details": "Go to the official university password reset portal (from a clean, uncompromised device) and change your password. Enable Multi-Factor Authentication (MFA) if not already active.",
+          "priority": "CRITICAL"
+        },
+        {
+          "step": 3,
+          "action": "Revoke active sessions",
+          "details": "In your Microsoft 365 or Google Workspace account settings, select \"Sign out of all sessions\" to disconnect attackers.",
+          "priority": "HIGH"
+        },
+        {
+          "step": 4,
+          "action": "Export original email headers",
+          "details": "Save the email as an .eml or .msg file or copy Internet Headers so the campus IT Security team can extract malicious server IPs and envelope addresses.",
+          "priority": "MEDIUM"
+        }
+      ],
+      "complianceActions": [
+        {
+          "action": "Submit Higher Education Incident Notification Form",
+          "entity": "KENET-CERT",
+          "channel": "Email: cert@kenet.or.ke / Hotline: +254 703 044 000",
+          "details": "KENET-CERT facilitates inter-university threat telemetry sharing and ISP coordination. Submit incident artifact dossier.",
+          "urgency": "HIGH"
+        },
+        {
+          "action": "Formal Breach Notification under Kenya Data Protection Act 2019",
+          "entity": "Office of the Data Protection Commissioner (ODPC Kenya)",
+          "channel": "complaints@odpc.go.ke / Portal: odpc.go.ke",
+          "details": "Section 43 mandates notifying the Data Protection Commissioner within 72 hours of becoming aware of a breach involving personal data of students or staff.",
+          "urgency": "STATUTORY REQUIREMENT"
+        },
+        {
+          "action": "National Cybersecurity Center Incident Filing",
+          "entity": "National KE-CIRT/CC",
+          "channel": "incidents@ke-cirt.go.ke",
+          "details": "Escalate to the National Kenya Computer Incident Response Team under the Communications Authority of Kenya (CA).",
+          "urgency": "MANDATORY"
+        }
+      ]
+    },
+    "triageNotes": [
+      {
+        "text": "Incident reported. Automated risk assessment evaluated Critical Risk (Score: 92/100, SLA: 1 Hour (Immediate Emergency Protocol)).",
+        "author": "System (Automated Risk Engine)",
+        "timestamp": "2026-11-23T17:51:31.079Z"
+      }
+    ],
+    "observedAt": "2026-11-23T17:51:31.079Z",
+    "createdAt": "2026-11-23T17:51:31.079Z",
+    "updatedAt": "2026-11-23T17:51:31.079Z"
+  },
+  {
+    "id": "EDU-CIR-2026-0009",
+    "title": "Hacking",
+    "categoryId": "PHISHING",
+    "subcategoryId": "CREDENTIAL_HARVESTING",
+    "assetId": "EXAM_GRADING_SYSTEM",
+    "sensitivityId": "EXAM_PAPERS",
+    "scopeId": "CAMPUS_WIDE",
+    "statusId": "ACTIVE_ONGOING",
+    "description": "Iwas hacked \n",
+    "indicators": "",
+    "credentialsCompromised": false,
+    "financialLossSuspected": false,
+    "status": "RESOLVED",
+    "assignedTo": "Unassigned (Awaiting SOC Triage)",
+    "reporter": {
+      "name": "Brian Kipchumba",
+      "type": "STUDENT",
+      "email": "brian.kipchumba@campus.ac.ke",
+      "phone": "",
+      "department": "School of Technology",
+      "identifier": "STD/2026/0481",
+      "isAnonymous": false
+    },
+    "assessment": {
+      "color": "#ef4444",
+      "level": "CRITICAL",
+      "score": 98,
+      "slaHours": 1,
+      "slaLabel": "1 Hour (Immediate Emergency Protocol)",
+      "assessedAt": "2026-11-23T14:27:30.520Z",
+      "badgeClass": "badge-critical",
+      "levelLabel": "Critical Risk",
+      "factorBreakdown": {
+        "baseThreat": {
+          "score": 6.9,
+          "category": "Phishing & Social Engineering",
+          "subcategory": "Student / Staff Portal Credential Harvesting"
+        },
+        "exploitStatus": {
+          "status": "Active & Ongoing Attack (Imminent / Present Damage)",
+          "modifierPoints": 15
+        },
+        "incidentScope": {
+          "level": "Campus-wide / Entire University Institution",
+          "multiplier": 1.4
+        },
+        "dataSensitivity": {
+          "multiplier": 1.5,
+          "classification": "Examination Papers & Marking Keys"
+        },
+        "assetCriticality": {
+          "type": "CRITICAL_ACADEMIC",
+          "asset": "Examination & Grading System",
+          "weight": 1.5
+        },
+        "additionalFactors": {
+          "bonusPoints": 0,
+          "credentialsCompromised": false,
+          "financialLossSuspected": false
+        }
+      },
+      "levelDescription": "Catastrophic event: active ransomware, examination leak, financial breach, or widespread campus network compromise. Requires immediate KENET-CERT escalation.",
+      "dataProtectionActNotice": false,
+      "kenetEscalationRequired": true
+    },
+    "recommendations": {
+      "itTeamPlaybook": [
+        {
+          "step": 1,
+          "phase": "IDENTIFICATION & TRIAGE",
+          "action": "Validate Incident Scope (1 Hour (Immediate Emergency Protocol))",
+          "details": "Assigned SLA is 1 hour(s). Verify reporter identity, check SIEM / syslog correlation for affected asset [EXAM_GRADING_SYSTEM]."
+        },
+        {
+          "step": 2,
+          "phase": "CONTAINMENT",
+          "action": "Network Isolation & Perimeter Quarantine",
+          "details": "Place affected IP / MAC on the isolated quarantine VLAN. Push dynamic firewall block rule at campus perimeter edge gateway."
+        },
+        {
+          "step": 3,
+          "phase": "CONTAINMENT",
+          "action": "Credential Invalidation & Kerberos Ticket Purge",
+          "details": "Force Kerberos ticket-granting service (TGS) reset in Active Directory and revoke refresh tokens on Azure AD / Office 365 tenant."
+        },
+        {
+          "step": 4,
+          "phase": "ERADICATION",
+          "action": "Campus-wide Mailbox Purge (Hard Delete)",
+          "details": "Execute PowerShell compliance search on Exchange/Google Workspace to quarantine matching Message-ID across all student/staff mailboxes."
+        },
+        {
+          "step": 5,
+          "phase": "ERADICATION",
+          "action": "DNS Sinkhole / Edge Web Filter Blacklist",
+          "details": "Add phishing domain and IP to local DNS RPZ (Response Policy Zone) and FortiGuard / Palo Alto URL categorization."
+        },
+        {
+          "step": 6,
+          "phase": "POST-INCIDENT",
+          "action": "Lessons Learned & Root Cause Analysis (RCA)",
+          "details": "Compile Root Cause Analysis report within 5 business days. Update firewall rules and schedule targeted cybersecurity awareness training."
+        }
+      ],
+      "reporterActions": [
+        {
+          "step": 1,
+          "action": "Do not click any embedded links, verify sender identity",
+          "details": "Do not click links or open attachments in the suspicious email/SMS. Official university emails always end with @kca.ac.ke or your institution domain.",
+          "priority": "HIGH"
+        },
+        {
+          "step": 4,
+          "action": "Export original email headers",
+          "details": "Save the email as an .eml or .msg file or copy Internet Headers so the campus IT Security team can extract malicious server IPs and envelope addresses.",
+          "priority": "MEDIUM"
+        }
+      ],
+      "complianceActions": [
+        {
+          "action": "Submit Higher Education Incident Notification Form",
+          "entity": "KENET-CERT",
+          "channel": "Email: cert@kenet.or.ke / Hotline: +254 703 044 000",
+          "details": "KENET-CERT facilitates inter-university threat telemetry sharing and ISP coordination. Submit incident artifact dossier.",
+          "urgency": "HIGH"
+        },
+        {
+          "action": "National Cybersecurity Center Incident Filing",
+          "entity": "National KE-CIRT/CC",
+          "channel": "incidents@ke-cirt.go.ke",
+          "details": "Escalate to the National Kenya Computer Incident Response Team under the Communications Authority of Kenya (CA).",
+          "urgency": "MANDATORY"
+        }
+      ]
+    },
+    "triageNotes": [
+      {
+        "text": "Incident reported. Automated risk assessment assigned Critical Risk (Score: 98/100, SLA: 1 Hour (Immediate Emergency Protocol)).",
+        "author": "System (Rule Engine)",
+        "timestamp": "2026-11-23T14:27:30.520Z"
+      },
+      {
+        "text": "Wonderful ",
+        "author": "SOC Lead Analyst",
+        "timestamp": "2026-11-23T14:29:56.007Z"
+      }
+    ],
+    "observedAt": "2026-11-23T14:27:30.504Z",
+    "createdAt": "2026-11-23T14:27:30.520Z",
+    "updatedAt": "2026-11-23T14:27:30.520Z"
+  },
+  {
+    "id": "EDU-CIR-2026-0008",
+    "title": "Whistleblower Report: Examination Papers Shared on Social Media Group",
+    "categoryId": "DATA_BREACH",
+    "subcategoryId": "EXAM_PAPER_LEAK",
+    "assetId": "EXAM_GRADING_SYSTEM",
+    "sensitivityId": "EXAM_PAPERS",
+    "scopeId": "MULTIPLE_DEPARTMENTS",
+    "statusId": "ACTIVE_ONGOING",
+    "description": "Screenshots of upcoming semester examinations uploaded to private Telegram channel 'Campus Past Papers & Leaks 2026'. PDFs contain lecturer review watermarks.",
+    "indicators": "Telegram Link: t.me/campus_exams_leaks_2026, Files: EXAM_FINAL_DRAFT.pdf",
+    "credentialsCompromised": true,
+    "financialLossSuspected": false,
+    "status": "UNDER_INVESTIGATION",
+    "assignedTo": "Kenneth Ochieng",
+    "reporter": {
+      "name": "Anonymous Whistleblower",
+      "type": "ANONYMOUS",
+      "email": "whistleblower@protonmail.com",
+      "phone": "",
+      "department": "School of Computing & Informatics",
+      "identifier": "ANON-STUDENT",
+      "isAnonymous": true
+    },
+    "assessment": {
+      "color": "#ef4444",
+      "level": "CRITICAL",
+      "score": 96,
+      "slaHours": 1,
+      "slaLabel": "1 Hour (Immediate Emergency Protocol)",
+      "badgeClass": "badge-critical",
+      "levelLabel": "Critical Risk",
+      "levelDescription": "Severe academic integrity crisis: exam compromise requires immediate exam re-setting and forensic investigation.",
+      "dataProtectionActNotice": false,
+      "kenetEscalationRequired": true
+    },
+    "recommendations": {},
+    "triageNotes": [
+      {
+        "text": "Academic Registrar alerted immediately. Exam cancelled and replacement papers requisitioned. Workstation audit commenced.",
+        "author": "Kenneth Ochieng",
+        "timestamp": "2026-11-22T22:00:00Z"
+      }
+    ],
+    "observedAt": "2026-11-22T20:00:00.000Z",
+    "createdAt": "2026-11-22T21:15:00.000Z",
+    "updatedAt": "2026-11-22T21:15:00.000Z"
+  },
+  {
+    "id": "EDU-CIR-2026-0002",
+    "title": "Ransomware (LockBit Variant) Outbreak in Computer Science Lab 4",
+    "categoryId": "MALWARE",
+    "subcategoryId": "RANSOMWARE",
+    "assetId": "COMPUTER_LAB_PC",
+    "sensitivityId": "INTERNAL_CONFIDENTIAL",
+    "scopeId": "SINGLE_DEPARTMENT",
+    "statusId": "ACTIVE_ONGOING",
+    "description": "18 desktop workstations in Lab 4 displayed black extortion screens demanding 0.5 BTC. File extensions renamed to '.locked'. Student project repositories and local virtual machines encrypted.",
+    "indicators": "Malware file: update_service.exe, Ransom note: RESTORE_FILES.txt, C2 IP: 91.240.118.12",
+    "credentialsCompromised": false,
+    "financialLossSuspected": true,
+    "status": "CONTAINED",
+    "assignedTo": "Grace Wanjiku (Incident Response Lead)",
+    "reporter": {
+      "name": "Prof. Daniel Mwangi",
+      "type": "STAFF",
+      "email": "dmwangi@campus.ac.ke",
+      "phone": "+254 722 987 654",
+      "department": "Computer Science & Informatics",
+      "identifier": "PF/8821",
+      "isAnonymous": false
+    },
+    "assessment": {
+      "color": "#ef4444",
+      "level": "CRITICAL",
+      "score": 92,
+      "slaHours": 1,
+      "slaLabel": "1 Hour (Immediate Emergency Protocol)",
+      "badgeClass": "badge-critical",
+      "levelLabel": "Critical Risk",
+      "levelDescription": "Active ransomware encryption on lab systems. Immediate network isolation enforced.",
+      "dataProtectionActNotice": false,
+      "kenetEscalationRequired": true
+    },
+    "recommendations": {},
+    "triageNotes": [
+      {
+        "text": "VLAN 24 isolated at switch level. Memory dump acquired from Lab-PC-07. No lateral movement detected into faculty server cluster.",
+        "author": "Grace Wanjiku",
+        "timestamp": "2026-11-21T09:00:00Z"
+      }
+    ],
+    "observedAt": "2026-11-21T08:15:00.000Z",
+    "createdAt": "2026-11-21T08:45:00.000Z",
+    "updatedAt": "2026-11-21T08:45:00.000Z"
+  },
+  {
+    "id": "EDU-CIR-2026-0001",
+    "title": "Counterfeit University Fee Subsidy & M-PESA Phishing Portal",
+    "categoryId": "PHISHING",
+    "subcategoryId": "FAKE_FEE_PAYMENT",
+    "assetId": "FINANCE_ERP",
+    "sensitivityId": "PII_FINANCIAL",
+    "scopeId": "CAMPUS_WIDE",
+    "statusId": "ACTIVE_ONGOING",
+    "description": "Mass SMS and WhatsApp messages circulating among students claiming to offer a 50% university tuition fee subsidy via a spoofed domain 'campus-fees-portal.com'. Several students entered their portal admission numbers and M-PESA transaction PINs.",
+    "indicators": "Phishing URL: http://campus-fees-portal.com/pay, SMS Sender: 'CAMPUS-FINANCE', Target IP: 185.220.101.44",
+    "credentialsCompromised": true,
+    "financialLossSuspected": true,
+    "status": "UNDER_INVESTIGATION",
+    "assignedTo": "Alex Kimani (Senior SOC Analyst)",
+    "reporter": {
+      "name": "Brian Kipchumba",
+      "type": "STUDENT",
+      "email": "bkipchumba@campus.ac.ke",
+      "phone": "+254 712 345 678",
+      "department": "Information Technology",
+      "identifier": "STD/2026/0481",
+      "isAnonymous": false
+    },
+    "assessment": {
+      "color": "#ef4444",
+      "level": "CRITICAL",
+      "score": 86,
+      "slaHours": 1,
+      "slaLabel": "1 Hour (Immediate Emergency Protocol)",
+      "badgeClass": "badge-critical",
+      "levelLabel": "Critical Risk",
+      "levelDescription": "High risk of student financial loss and credential theft across campus.",
+      "dataProtectionActNotice": true,
+      "kenetEscalationRequired": true
+    },
+    "recommendations": {},
+    "triageNotes": [
+      {
+        "text": "Phishing domain blocked on campus edge gateway. Abuse report filed with registrar. Advisory broadcast sent via student portal.",
+        "author": "Alex Kimani",
+        "timestamp": "2026-11-20T10:45:00Z"
+      }
+    ],
+    "observedAt": "2026-11-20T09:30:00.000Z",
+    "createdAt": "2026-11-20T10:15:00.000Z",
+    "updatedAt": "2026-11-20T10:15:00.000Z"
+  },
+  {
+    "id": "EDU-CIR-2026-0005",
+    "title": "Rogue 'Evil Twin' Wi-Fi Hotspot Broadcasting in Main Campus Library",
+    "categoryId": "NETWORK_INTRUSION",
+    "subcategoryId": "ROGUE_EVIL_TWIN_WIFI",
+    "assetId": "CAMPUS_WIFI",
+    "sensitivityId": "INTERNAL_CONFIDENTIAL",
+    "scopeId": "SINGLE_DEPARTMENT",
+    "statusId": "SUSPECTED_ATTEMPT",
+    "description": "An open Wi-Fi network named 'CAMPUS_FREE_STUDENT_WIFI' was detected in the library 2nd floor. Connecting presented a counterfeit captive portal asking students for their email passwords.",
+    "indicators": "BSSID: 00:14:22:98:AA:BC, Signal Strength: -48 dBm near Carrel Desk 14, Captive Portal IP: 192.168.4.1",
+    "credentialsCompromised": true,
+    "financialLossSuspected": false,
+    "status": "RESOLVED",
+    "assignedTo": "Alex Kimani (Senior SOC Analyst)",
+    "reporter": {
+      "name": "Faith Muthoni",
+      "type": "STUDENT",
+      "email": "fmuthoni@campus.ac.ke",
+      "phone": "+254 701 889 900",
+      "department": "Business & Technology",
+      "identifier": "STD/2026/0119",
+      "isAnonymous": false
+    },
+    "assessment": {
+      "color": "#f59e0b",
+      "level": "MEDIUM",
+      "score": 68,
+      "slaHours": 24,
+      "slaLabel": "24 Hours (Standard Escalation)",
+      "badgeClass": "badge-medium",
+      "levelLabel": "Medium Risk",
+      "levelDescription": "Active MITM rogue AP attempting credential harvesting in localized campus zone.",
+      "dataProtectionActNotice": false,
+      "kenetEscalationRequired": false
+    },
+    "recommendations": {},
+    "triageNotes": [
+      {
+        "text": "Campus security located a battery-powered rogue device concealed under study furniture. Confiscated for forensic analysis.",
+        "author": "Alex Kimani",
+        "timestamp": "2026-11-19T15:00:00Z"
+      }
+    ],
+    "observedAt": "2026-11-19T13:40:00.000Z",
+    "createdAt": "2026-11-19T14:10:00.000Z",
+    "updatedAt": "2026-11-19T14:10:00.000Z"
+  },
+  {
+    "id": "EDU-CIR-2026-0003",
+    "title": "Unauthorized Access and Grade Alteration Attempt on Exam Server",
+    "categoryId": "UNAUTHORIZED_ACCESS",
+    "subcategoryId": "GRADE_TAMPERING_ATTEMPT",
+    "assetId": "EXAM_GRADING_SYSTEM",
+    "sensitivityId": "EXAM_PAPERS",
+    "scopeId": "MULTIPLE_DEPARTMENTS",
+    "statusId": "CONFIRMED_COMPROMISE",
+    "description": "Database audit logs triggered alerts for modified SQL records on table `tbl_unit_marks` without lecturer digital signature. SQL injection flaw leveraged via faculty marks entry module.",
+    "indicators": "Attacker IP: 197.232.88.19 (Public Proxy), Compromised Account: staff_lecturer_49",
+    "credentialsCompromised": true,
+    "financialLossSuspected": false,
+    "status": "RESOLVED",
+    "assignedTo": "Kenneth Ochieng",
+    "reporter": {
+      "name": "Kenneth Ochieng",
+      "type": "IT_STAFF",
+      "email": "kochieng@campus.ac.ke",
+      "phone": "+254 733 112 233",
+      "department": "Directorate of ICT & Cyber Defense",
+      "identifier": "ICT/041",
+      "isAnonymous": false
+    },
+    "assessment": {
+      "color": "#ef4444",
+      "level": "CRITICAL",
+      "score": 94,
+      "slaHours": 1,
+      "slaLabel": "1 Hour (Immediate Emergency Protocol)",
+      "badgeClass": "badge-critical",
+      "levelLabel": "Critical Risk",
+      "levelDescription": "Direct integrity threat to academic grading and university certification credibility.",
+      "dataProtectionActNotice": false,
+      "kenetEscalationRequired": true
+    },
+    "recommendations": {},
+    "triageNotes": [
+      {
+        "text": "Compromised lecturer account disabled. Database rolled back to clean snapshot. Disciplinary committee notified.",
+        "author": "Kenneth Ochieng",
+        "timestamp": "2026-11-18T15:30:00Z"
+      }
+    ],
+    "observedAt": "2026-11-18T14:20:00.000Z",
+    "createdAt": "2026-11-18T14:50:00.000Z",
+    "updatedAt": "2026-11-18T14:50:00.000Z"
+  },
+  {
+    "id": "EDU-CIR-2026-0004",
+    "title": "DDoS Traffic Flood against Student ERP during Semester Unit Registration",
+    "categoryId": "DENIAL_OF_SERVICE",
+    "subcategoryId": "PORTAL_EXAM_OUTAGE",
+    "assetId": "STUDENT_PORTAL",
+    "sensitivityId": "OPERATIONAL",
+    "scopeId": "CAMPUS_WIDE",
+    "statusId": "CONFIRMED_COMPROMISE",
+    "description": "Inbound HTTP SYN and UDP flood exceeding 18 Gbps targeted portal.campus.ac.ke, rendering the registration portal unresponsive on deadline day for over 4,000 students.",
+    "indicators": "Target Port: 443, Inbound Bandwidth: 18.4 Gbps, Attack Vector: DNS Amplification and NTP Reflection",
+    "credentialsCompromised": false,
+    "financialLossSuspected": false,
+    "status": "RESOLVED",
+    "assignedTo": "Sarah Chebet",
+    "reporter": {
+      "name": "Sarah Chebet",
+      "type": "IT_STAFF",
+      "email": "schebet@campus.ac.ke",
+      "phone": "+254 720 556 778",
+      "department": "Network Operations Center",
+      "identifier": "ICT/089",
+      "isAnonymous": false
+    },
+    "assessment": {
+      "color": "#f97316",
+      "level": "HIGH",
+      "score": 78,
+      "slaHours": 4,
+      "slaLabel": "4 Hours (Urgent Incident Response)",
+      "badgeClass": "badge-high",
+      "levelLabel": "High Risk",
+      "levelDescription": "Major availability outage during high-impact academic deadline.",
+      "dataProtectionActNotice": false,
+      "kenetEscalationRequired": true
+    },
+    "recommendations": {},
+    "triageNotes": [
+      {
+        "text": "DDoS scrubbing activated with upstream ISP. BGP routes rerouted via protected path. Registration deadline extended by 48 hours.",
+        "author": "Sarah Chebet",
+        "timestamp": "2026-11-17T12:15:00Z"
+      }
+    ],
+    "observedAt": "2026-11-17T11:00:00.000Z",
+    "createdAt": "2026-11-17T11:30:00.000Z",
+    "updatedAt": "2026-11-17T11:30:00.000Z"
+  },
+  {
+    "id": "EDU-CIR-2026-0006",
+    "title": "Faculty Laptop Stolen Containing Unencrypted Postgraduate Research Data",
+    "categoryId": "PHYSICAL_SECURITY",
+    "subcategoryId": "STOLEN_STAFF_LAPTOP",
+    "assetId": "PERSONAL_STUDENT_DEVICE",
+    "sensitivityId": "PII_FINANCIAL",
+    "scopeId": "MULTIPLE_DEPARTMENTS",
+    "statusId": "CONFIRMED_COMPROMISE",
+    "description": "Faculty laptop stolen from departmental office overnight. Laptop contained non-anonymized demographic survey data, student marks, and research proposals.",
+    "indicators": "Device Serial: 4K9L8Z2, MAC: D4:BE:D9:12:34:56, BitLocker: Not Enabled",
+    "credentialsCompromised": true,
+    "financialLossSuspected": false,
+    "status": "UNDER_INVESTIGATION",
+    "assignedTo": "Grace Wanjiku (Incident Response Lead)",
+    "reporter": {
+      "name": "Dr. Joseph Karanja",
+      "type": "STAFF",
+      "email": "jkaranja@campus.ac.ke",
+      "phone": "+254 711 223 344",
+      "department": "School of Graduate Studies",
+      "identifier": "PF/7102",
+      "isAnonymous": false
+    },
+    "assessment": {
+      "color": "#f97316",
+      "level": "HIGH",
+      "score": 75,
+      "slaHours": 4,
+      "slaLabel": "4 Hours (Urgent Incident Response)",
+      "badgeClass": "badge-high",
+      "levelLabel": "High Risk",
+      "levelDescription": "Loss of physical hardware containing unencrypted personal identifiable information.",
+      "dataProtectionActNotice": true,
+      "kenetEscalationRequired": true
+    },
+    "recommendations": {},
+    "triageNotes": [
+      {
+        "text": "Remote wipe command issued via Microsoft Intune MDM. Microsoft 365 session revoked. Incident report logged.",
+        "author": "Grace Wanjiku",
+        "timestamp": "2026-11-16T09:30:00Z"
+      }
+    ],
+    "observedAt": "2026-11-15T18:00:00.000Z",
+    "createdAt": "2026-11-16T08:00:00.000Z",
+    "updatedAt": "2026-11-16T08:00:00.000Z"
+  },
+  {
+    "id": "EDU-CIR-2026-0007",
+    "title": "Cryptomining Daemon Installed on High-Performance Research Cluster",
+    "categoryId": "MALWARE",
+    "subcategoryId": "CRYPTOMINER",
+    "assetId": "CAMPUS_NETWORK_CORE",
+    "sensitivityId": "OPERATIONAL",
+    "scopeId": "SINGLE_DEPARTMENT",
+    "statusId": "CONFIRMED_COMPROMISE",
+    "description": "CPU utilization on cluster node 'hpc-node-03' spiked to 100%. Process `kswapd0` was masquerading as a kernel worker but executing XMRig Monero miner via a hijacked SSH key.",
+    "indicators": "Miner Pool: pool.supportxmr.com:3333, Process: /var/tmp/.crypto/xmrig",
+    "credentialsCompromised": true,
+    "financialLossSuspected": false,
+    "status": "RESOLVED",
+    "assignedTo": "Vincent Barasa",
+    "reporter": {
+      "name": "Vincent Barasa",
+      "type": "IT_STAFF",
+      "email": "vbarasa@campus.ac.ke",
+      "phone": "+254 734 567 890",
+      "department": "Systems & Database Administration",
+      "identifier": "ICT/102",
+      "isAnonymous": false
+    },
+    "assessment": {
+      "color": "#f59e0b",
+      "level": "MEDIUM",
+      "score": 64,
+      "slaHours": 24,
+      "slaLabel": "24 Hours (Standard Escalation)",
+      "badgeClass": "badge-medium",
+      "levelLabel": "Medium Risk",
+      "levelDescription": "Unauthorized consumption of computational power with compromised SSH credentials.",
+      "dataProtectionActNotice": false,
+      "kenetEscalationRequired": false
+    },
+    "recommendations": {},
+    "triageNotes": [
+      {
+        "text": "Process killed, malicious cronjob purged. SSH keys rotated, root login disabled.",
+        "author": "Vincent Barasa",
+        "timestamp": "2026-11-14T09:00:00Z"
+      }
+    ],
+    "observedAt": "2026-11-14T02:00:00.000Z",
+    "createdAt": "2026-11-14T07:30:00.000Z",
+    "updatedAt": "2026-11-14T07:30:00.000Z"
+  }
+]

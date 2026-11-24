@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniCERT | Higher Education Cyber Incident & Risk Assessment Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+</head>
+<body>
+
+  <!-- =========================================================================
+       TOP HEADER (STICKY)
+       ========================================================================= -->
+  <header class="app-header">
+    <div class="header-container">
+      <!-- Brand -->
+      <div class="brand-section">
+        <div class="brand-logo-icon">🛡️</div>
+        <div class="brand-title">
+          <h1>UniCERT</h1>
+          <p>Higher Education Cyber Incident Reporting &amp; Risk Assessment Platform</p>
+        </div>
+      </div>
+
+      <!-- Header Controls -->
+      <div class="header-actions">
+        <!-- Dark / Light Mode Toggle -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Dark / Light Mode">
+          <span>☀️</span> Light Mode
+        </button>
+
+        <!-- User Profile Badge (Opens Auth Modal) -->
+        <div id="headerProfileBtn" class="user-profile-badge" title="Click to Sign In, Register, or Switch Account">
+          <div id="headerUserAvatar" class="user-avatar-circle">👤</div>
+          <div class="user-meta">
+            <div id="headerUserName" class="user-name-text">Brian Kipchumba</div>
+            <div id="headerUserRole" class="role-pill-badge badge-user">General User (Student)</div>
+          </div>
+          <span style="font-size: 0.75rem; color: var(--accent-blue); margin-left: 2px; opacity: 0.8;">⇄</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- =========================================================================
+       NAVIGATION BAR (ROLE-ADAPTIVE — 3 TIER HIERARCHY: USER / IT / ADMIN)
+       ========================================================================= -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+
+      <!-- 1. GENERAL USER TAB (Visible for GENERAL_USER) -->
+      <button class="nav-tab-btn user-nav-btn active" data-target="userDashboardPane">
+        <span>👤</span> My User Portal
+      </button>
+
+      <!-- 2. IT PERSONNEL TAB (Visible for IT_PERSONNEL) -->
+      <button class="nav-tab-btn tech-nav-btn" data-target="techSupervisorPane" style="display: none;">
+        <span>🛠️</span> IT Operations Console
+      </button>
+
+      <!-- 3. ADMINISTRATOR TAB (Visible for ADMIN) -->
+      <button class="nav-tab-btn admin-nav-btn" data-target="adminDashboardPane" style="display: none;">
+        <span>👑</span> Admin Governance Hub
+      </button>
+
+      <!-- Universal Reporting -->
+      <button class="nav-tab-btn" data-target="reportPane">
+        <span>📝</span> Report Incident
+      </button>
+
+      <!-- IT & Admin Incident Triage -->
+      <button class="nav-tab-btn tech-nav-btn" data-target="triagePane" style="display: none;">
+        <span>🛡️</span> SOC Triage &amp; Playbooks
+      </button>
+
+      <!-- Admin User Access Management -->
+      <button class="nav-tab-btn admin-nav-btn" data-target="usersPane" style="display: none;">
+        <span>👥</span> User Access Management
+      </button>
+
+      <!-- Universal Tracking -->
+      <button class="nav-tab-btn" data-target="trackerPane">
+        <span>🔍</span> Track Ticket
+      </button>
+
+      <!-- IT Risk Simulator -->
+      <button class="nav-tab-btn tech-nav-btn" data-target="simulatorPane" style="display: none;">
+        <span>🧪</span> Risk Simulator
+      </button>
+
+    </div>
+  </nav>
+
+
+  <!-- =========================================================================
+       MAIN CONTENT AREA
+       ========================================================================= -->
+  <main class="main-content">
+
+
+    <!-- =======================================================================
+         VIEW 1: GENERAL USER PORTAL (Role: GENERAL_USER - Students/Lecturers/Staff)
+         Proposal Section 2.3.1: Basic skills, report incidents, view authorized guidance
+         ======================================================================= -->
+    <section id="userDashboardPane" class="tab-content-pane active">
+      <div class="user-dashboard-wrap">
+
+        <!-- User Hero Banner -->
+        <div class="portal-hero-banner" style="margin-top: 0.25rem;">
+          <div class="portal-hero-text">
+            <h2>👤 Campus Cyber Defense Hub — General User Portal</h2>
+            <p>
+              Designed for students, lecturers, and institutional staff. Report suspected cybersecurity incidents, 
+              view your report history, and receive immediate containment recommendations. General users do not 
+              have access to restricted administrative or technical triage functions.
+            </p>
+          </div>
+          <div class="hero-action-buttons">
+            <button class="btn btn-primary" onclick="window.switchTab('reportPane')">
+              <span>🚨</span> Report New Cyber Incident
+            </button>
+            <button class="btn btn-secondary" onclick="window.switchTab('trackerPane')">
+              <span>🔍</span> Track My Incident Ticket
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Campus Threat Alert Bulletin (Dynamically Loaded & Admin Managed) -->
+        <div class="alert-bulletin-box" id="campusAlertBulletinBox">
+          <div class="bulletin-icon" id="campusAlertIcon">⚠️</div>
+          <div style="flex: 1;">
+            <strong style="color: #fca5a5; font-size: 0.9rem;" id="campusAlertTitle">
+              Active Campus Alert: Counterfeit Tuition Fee Phishing Scams Circulating
+            </strong>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 3px; line-height: 1.4;" id="campusAlertDescription">
+              Deceptive WhatsApp &amp; SMS messages promising a 50% tuition subsidy via fake M-PESA links are actively circulating. 
+              Never enter your portal password outside official university domains. Report any suspicious messages immediately.
+            </p>
+            <div id="campusAlertMeta" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;"></div>
+          </div>
+          <span class="badge badge-critical" id="campusAlertBadge">Active Threat</span>
+        </div>
+
+        <!-- General User Quick Action Tiles -->
+        <div class="section-heading"><span>⚡</span> Quick Incident Reporting Categories</div>
+
+        <div class="action-tile-grid">
+
+          <div class="action-tile" onclick="window.switchTab('reportPane')">
+            <div class="action-tile-icon">🎣</div>
+            <div>
+              <strong style="color: var(--text-primary); font-size: 0.88rem;">Received Phishing SMS or Email?</strong>
+              <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 3px;">
+                Report fraudulent links and suspicious sender addresses for firewall blocking.
+              </p>
+            </div>
+          </div>
+
+          <div class="action-tile" onclick="window.switchTab('reportPane')">
+            <div class="action-tile-icon">🔑</div>
+            <div>
+              <strong style="color: var(--text-primary); font-size: 0.88rem;">Campus Portal Password Compromised?</strong>
+              <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 3px;">
+                Trigger automated session termination and account security isolation.
+              </p>
+            </div>
+          </div>
+
+          <div class="action-tile" onclick="window.switchTab('reportPane')">
+            <div class="action-tile-icon">💻</div>
+            <div>
+              <strong style="color: var(--text-primary); font-size: 0.88rem;">Lab Computer Ransomware or Virus?</strong>
+              <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 3px;">
+                Alert IT personnel immediately to isolate infected classroom workstations.
+              </p>
+            </div>
+          </div>
+
+          <div class="action-tile" onclick="window.switchTab('reportPane')">
+            <div class="action-tile-icon">📶</div>
+            <div>
+              <strong style="color: var(--text-primary); font-size: 0.88rem;">Suspicious Wi-Fi or Rogue Hotspot?</strong>
+              <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 3px;">
+                Report unencrypted hotspots harvesting user passwords and credentials.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- User's Reported Incidents Table -->
+        <div class="section-heading"><span>📋</span> My Reported Incidents &amp; Security Requests</div>
+
+        <div class="ui-card">
+          <div class="ui-card-header">
+            <div class="ui-card-title">
+              <span>🗂️</span> My Incident History
+            </div>
+            <span id="userActiveCount" class="tag-badge">0 Reports</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ticket ID</th>
+                  <th>Incident Title</th>
+                  <th>Assigned Risk</th>
+                  <th>Investigation Status</th>
+                  <th>Reported On</th>
+                </tr>
+              </thead>
+              <tbody id="userReportsTableBody">
+                <!-- Rendered by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Campus Security Tips for General Users -->
+        <div class="ui-card">
+          <div class="ui-card-header">
+            <div class="ui-card-title"><span>💡</span> Safe Computing Practices for Students &amp; Staff</div>
+            <span class="tag-badge" style="color: var(--accent-green); border-color: rgba(16,185,129,0.4);">Best Practices</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; margin-top: 0.25rem;">
+            <div style="background: rgba(14,165,233,0.06); border: 1px solid rgba(14,165,233,0.2); border-radius: 10px; padding: 1rem;">
+              <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">🔒</div>
+              <strong style="font-size: 0.84rem; color: var(--text-primary);">Enable Multi-Factor Authentication</strong>
+              <p style="font-size: 0.77rem; color: var(--text-secondary); margin-top: 3px;">Protect your student or staff email and ERP accounts with authenticator apps or SMS MFA.</p>
+            </div>
+            <div style="background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; padding: 1rem;">
+              <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">🌐</div>
+              <strong style="font-size: 0.84rem; color: var(--text-primary);">Inspect Links Before Clicking</strong>
+              <p style="font-size: 0.77rem; color: var(--text-secondary); margin-top: 3px;">Check sender email domains. Genuine campus services only use official institution domains.</p>
+            </div>
+            <div style="background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 10px; padding: 1rem;">
+              <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">📱</div>
+              <strong style="font-size: 0.84rem; color: var(--text-primary);">Report Promptly</strong>
+              <p style="font-size: 0.77rem; color: var(--text-secondary); margin-top: 3px;">Reporting within minutes of discovering suspicious activity enables IT to isolate attacks before data is stolen.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         VIEW 2: IT PERSONNEL / TECHNICAL TEAM CONSOLE (Role: IT_PERSONNEL)
+         Proposal Section 2.3.3: Review incidents, understand risk levels, execute SOPs
+         ======================================================================= -->
+    <section id="techSupervisorPane" class="tab-content-pane">
+      <div class="tech-dashboard-wrap">
+
+        <!-- Tech Team Hero Banner -->
+        <div class="portal-hero-banner tech-banner" style="margin-top: 0.25rem;">
+          <div class="portal-hero-text">
+            <h2>🛠️ IT Personnel Incident Response &amp; Crisis Command Center</h2>
+            <p>
+              Dedicated console for IT experts and technical crisis teams. Review incident descriptions, IoCs, 
+              calculated multi-factor risk scores, and execute NIST CSF 2.0 technical containment playbooks.
+            </p>
+          </div>
+          <div class="hero-action-buttons">
+            <button class="btn btn-purple" onclick="window.switchTab('triagePane')">
+              <span>🛡️</span> Open Triage Queue
+            </button>
+            <button class="btn btn-secondary" onclick="window.switchTab('simulatorPane')">
+              <span>🧪</span> Risk Simulator
+            </button>
+          </div>
+        </div>
+
+        <!-- Enterprise KPI Metrics Row -->
+        <div class="section-heading"><span>📊</span> Live Technical Security Telemetry</div>
+
+        <div class="stats-row">
+          <div class="metric-card tech-kpi-card total">
+            <div class="metric-header">
+              <span class="metric-title">Total Incidents</span>
+              <span class="metric-icon">📁</span>
+            </div>
+            <div class="metric-value" id="kpiTotal">0</div>
+            <div class="metric-sub">Logged across all campus networks</div>
+          </div>
+
+          <div class="metric-card critical">
+            <div class="metric-header">
+              <span class="metric-title">Critical Threats</span>
+              <span class="metric-icon">🚨</span>
+            </div>
+            <div class="metric-value" id="kpiCritical" style="color: var(--risk-critical)">0</div>
+            <div class="metric-sub">&lt; 1 hr SLA | Urgent SOC Containment</div>
+          </div>
+
+          <div class="metric-card high">
+            <div class="metric-header">
+              <span class="metric-title">High Risk</span>
+              <span class="metric-icon">⚠️</span>
+            </div>
+            <div class="metric-value" id="kpiHigh" style="color: var(--risk-high)">0</div>
+            <div class="metric-sub">&lt; 4 hr SLA | Target Response</div>
+          </div>
+
+          <div class="metric-card medium">
+            <div class="metric-header">
+              <span class="metric-title">Under Investigation</span>
+              <span class="metric-icon">⏳</span>
+            </div>
+            <div class="metric-value" id="kpiInvestigating" style="color: var(--accent-gold)">0</div>
+            <div class="metric-sub">Active technical triage</div>
+          </div>
+
+          <div class="metric-card low">
+            <div class="metric-header">
+              <span class="metric-title">Contained / Resolved</span>
+              <span class="metric-icon">✅</span>
+            </div>
+            <div class="metric-value" id="kpiResolved" style="color: var(--risk-low)">0</div>
+            <div class="metric-sub">Eradicated campus threats</div>
+          </div>
+        </div>
+
+        <!-- Analytics Charts Row -->
+        <div class="section-heading"><span>📈</span> Threat Analytics &amp; Intelligence</div>
+
+        <div class="two-col-grid">
+
+          <div class="ui-card">
+            <div class="ui-card-header">
+              <div class="ui-card-title"><span>📊</span> Incident Distribution by Category</div>
+              <span class="tag-badge">NIST CSF 2.0</span>
+            </div>
+            <div id="categoryChartContainer">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <div class="ui-card">
+            <div class="ui-card-header">
+              <div class="ui-card-title"><span>⚖️</span> Risk Severity &amp; Response SLA Matrix</div>
+              <span class="tag-badge" style="border-color: rgba(245,158,11,0.4); color: var(--accent-gold);">KENET-CERT</span>
+            </div>
+            <div id="riskPillGrid" class="risk-pill-grid">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Threat Stream Row -->
+        <div class="two-col-grid">
+
+          <div class="ui-card">
+            <div class="ui-card-header">
+              <div class="ui-card-title"><span>🖥️</span> Most Targeted University Assets</div>
+            </div>
+            <div id="assetChartContainer">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <div class="ui-card">
+            <div class="ui-card-header">
+              <div class="ui-card-title"><span>⚡</span> Real-Time Threat Activity Stream</div>
+              <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.75rem;" onclick="window.refreshAllDashboards()">
+                🔄 Refresh
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Ticket</th>
+                    <th>Title</th>
+                    <th>Risk Tier</th>
+                    <th>Status</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+                <tbody id="recentIncidentsTableBody">
+                  <!-- Rendered by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- IT Quick Actions -->
+        <div class="section-heading"><span>🛡️</span> Technical Incident Response Tools</div>
+
+        <div class="action-tile-grid">
+
+          <div class="action-tile tech-action-tile" onclick="window.switchTab('triagePane')">
+            <div class="action-tile-icon purple-icon">🛡️</div>
+            <div>
+              <strong style="color: var(--text-primary); font-size: 0.88rem;">Open SOC Triage Console</strong>
+              <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 3px;">
+                Review IoCs, update incident lifecycle, assign technicians, and log audit notes.
+              </p>
+            </div>
+          </div>
+
+          <div class="action-tile tech-action-tile" onclick="window.switchTab('simulatorPane')">
+            <div class="action-tile-icon purple-icon">🧪</div>
+            <div>
+              <strong style="color: var(--text-primary); font-size: 0.88rem;">Risk Scenario Simulator</strong>
+              <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 3px;">
+                Test hypothetical risk calculations and validate response playbooks.
+              </p>
+            </div>
+          </div>
+
+          <div class="action-tile tech-action-tile" onclick="window.switchTab('reportPane')">
+            <div class="action-tile-icon purple-icon">📝</div>
+            <div>
+              <strong style="color: var(--text-primary); font-size: 0.88rem;">Log Direct SOC Incident</strong>
+              <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 3px;">
+                Report an infrastructure breach detected via firewalls, IDS/IPS, or server logs.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         VIEW 3: ADMINISTRATOR DASHBOARD (Role: ADMIN)
+         Proposal Section 2.3.2: Manage access, review stored info, executive summaries
+         ======================================================================= -->
+    <section id="adminDashboardPane" class="tab-content-pane">
+      <div class="admin-dashboard-wrap">
+
+        <!-- Admin Hero Banner -->
+        <div class="portal-hero-banner admin-banner" style="margin-top: 0.25rem;">
+          <div class="portal-hero-text">
+            <h2>👑 Administrator Executive Governance &amp; Institutional Posture</h2>
+            <p>
+              Executive management console. Oversee campus cybersecurity readiness, review comprehensive 
+              incident summaries, monitor statutory compliance (KENET &amp; ODPC 72-hr notice), and manage 
+              authorized user access across all institutional faculties.
+            </p>
+          </div>
+          <div class="hero-action-buttons">
+            <button class="btn btn-gold" onclick="window.switchTab('usersPane')">
+              <span>👥</span> Manage User Access
+            </button>
+            <button class="btn btn-secondary" onclick="window.switchTab('triagePane')">
+              <span>📋</span> Review Incident Records
+            </button>
+          </div>
+        </div>
+
+        <!-- Executive KPIs Row -->
+        <div class="section-heading"><span>🏛️</span> Institutional Cyber Risk Posture</div>
+
+        <div class="stats-row">
+          <div class="metric-card total" style="border-top-color: var(--admin-accent);">
+            <div class="metric-header">
+              <span class="metric-title">Total Logged Incidents</span>
+              <span class="metric-icon">📁</span>
+            </div>
+            <div class="metric-value" id="adminKpiTotalIncidents">0</div>
+            <div class="metric-sub">University-wide incident volume</div>
+          </div>
+
+          <div class="metric-card critical">
+            <div class="metric-header">
+              <span class="metric-title">Statutory Breaches</span>
+              <span class="metric-icon">⚖️</span>
+            </div>
+            <div class="metric-value" id="adminKpiStatutoryBreaches" style="color: var(--risk-critical)">0</div>
+            <div class="metric-sub">ODPC 72h / KENET 2h Notices</div>
+          </div>
+
+          <div class="metric-card low">
+            <div class="metric-header">
+              <span class="metric-title">Authorized Users</span>
+              <span class="metric-icon">👥</span>
+            </div>
+            <div class="metric-value" id="adminKpiTotalUsers" style="color: var(--accent-blue)">4</div>
+            <div class="metric-sub">Managed campus accounts</div>
+          </div>
+
+          <div class="metric-card" style="border-top-color: var(--accent-green);">
+            <div class="metric-header">
+              <span class="metric-title">Compliance Readiness</span>
+              <span class="metric-icon">🛡️</span>
+            </div>
+            <div class="metric-value" id="adminKpiComplianceScore" style="color: var(--accent-green)">98.4%</div>
+            <div class="metric-sub">NIST CSF 2.0 / KENET Alignment</div>
+          </div>
+        </div>
+
+        <!-- Department Breakdown & Governance Grid -->
+        <div class="two-col-grid">
+
+          <div class="ui-card">
+            <div class="ui-card-header">
+              <div class="ui-card-title"><span>🏛️</span> Incident Volume by Faculty / Department</div>
+              <span class="tag-badge" style="color: var(--admin-accent); border-color: rgba(245,158,11,0.4);">Institutional Distribution</span>
+            </div>
+            <div id="adminDeptBreakdownContainer">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <div class="ui-card">
+            <div class="ui-card-header">
+              <div class="ui-card-title"><span>📜</span> Statutory Compliance Oversight</div>
+              <span class="tag-badge">Regulatory Watch</span>
+            </div>
+            <div style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.6;">
+              <div style="padding: 0.75rem; background: rgba(148,163,184,0.06); border-radius: 8px; margin-bottom: 0.75rem; border: 1px solid var(--border-light);">
+                <strong style="color: var(--text-primary); display: block;">🏛️ KENET-CERT Coordination Protocol</strong>
+                Institutional core outages and ransomware attacks must be formally notified within <strong>2 hours</strong>.
+              </div>
+              <div style="padding: 0.75rem; background: rgba(244,63,94,0.08); border-radius: 8px; margin-bottom: 0.75rem; border: 1px solid rgba(244,63,94,0.25);">
+                <strong style="color: var(--risk-critical); display: block;">⚖️ Data Protection Act 2019 (ODPC)</strong>
+                Section 43: Personal data breaches must be notified to the Data Commissioner within <strong>72 hours</strong>.
+              </div>
+              <div style="padding: 0.75rem; background: rgba(16,185,129,0.06); border-radius: 8px; border: 1px solid rgba(16,185,129,0.25);">
+                <strong style="color: var(--accent-green); display: block;">🛡️ NIST CSF 2.0 Governance Function</strong>
+                Active governance policies, audit trails, and role-based access management enforced across all subsystems.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Administrator Campus Threat Alert Bulletin Manager -->
+        <div class="section-heading"><span>📢</span> Campus Threat Alert Broadcast Console</div>
+
+        <div class="ui-card" style="border-left: 4px solid var(--admin-accent); margin-bottom: 1.5rem;">
+          <div class="ui-card-header">
+            <div class="ui-card-title">
+              <span>⚠️</span> Active Campus Threat Advisory Management
+            </div>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <span id="adminAlertLiveBadge" class="badge badge-critical">Active Threat</span>
+            </div>
+          </div>
+          <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.5;">
+            Broadcast real-time cyber threat alerts to all students, lecturers, and staff. Updates published here appear immediately at the top of the General User Portal.
+          </p>
+
+          <form id="adminCampusAlertForm">
+            <div class="form-group">
+              <label class="form-label" for="adminAlertTitle">
+                Alert Headline / Subject <span class="required">*</span>
+              </label>
+              <input type="text" id="adminAlertTitle" class="form-input"
+                placeholder="e.g. Active Campus Alert: Counterfeit Tuition Fee Phishing Scams Circulating" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="adminAlertDescription">
+                Advisory Narrative &amp; Action Required for Students/Staff <span class="required">*</span>
+              </label>
+              <textarea id="adminAlertDescription" class="form-input" rows="3" style="resize: vertical; min-height: 75px;"
+                placeholder="Detailed description of the threat, counterfeit channels (SMS, WhatsApp), and immediate instructions..." required></textarea>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="adminAlertSeverity">Threat Severity Level</label>
+                <select id="adminAlertSeverity" class="form-select">
+                  <option value="CRITICAL">🔴 Critical (Active Threat)</option>
+                  <option value="HIGH">🟠 High (Urgent Advisory)</option>
+                  <option value="MEDIUM">🟡 Medium (Security Warning)</option>
+                  <option value="LOW">🟢 Low (Informational Notice)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="adminAlertBadgeLabel">Status Badge Label</label>
+                <input type="text" id="adminAlertBadgeLabel" class="form-input" value="Active Threat" placeholder="e.g. Active Threat">
+              </div>
+
+              <div class="form-group" style="display: flex; flex-direction: column; justify-content: flex-end;">
+                <label class="checkbox-label" style="font-weight: 600; padding-bottom: 8px;">
+                  <input type="checkbox" id="adminAlertIsActive" checked>
+                  Display Alert on Student &amp; Staff Dashboard
+                </label>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; border-top: 1px solid var(--border-light); padding-top: 1rem;">
+              <span id="adminAlertLastUpdated" style="font-size: 0.78rem; color: var(--text-muted);">
+                Last published: Loading...
+              </span>
+              <button type="submit" id="saveCampusAlertBtn" class="btn btn-gold" style="padding: 10px 22px;">
+                <span>📢</span> Publish &amp; Broadcast Alert to Campus
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Executive Incident Archive Review -->
+        <div class="section-heading"><span>📋</span> Executive Incident Archive Review</div>
+
+        <div class="ui-card">
+          <div class="ui-card-header">
+            <div class="ui-card-title"><span>🗂️</span> Incident Audit Trail &amp; Assessment Summaries</div>
+            <button class="btn btn-secondary" style="font-size: 0.78rem; padding: 5px 12px;" onclick="window.switchTab('triagePane')">
+              Open Full Search &amp; Filter Console
+            </button>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ticket ID</th>
+                  <th>Incident Title</th>
+                  <th>Risk Tier</th>
+                  <th>Status</th>
+                  <th>Reporter (Affiliation)</th>
+                  <th>Logged Date</th>
+                </tr>
+              </thead>
+              <tbody id="adminExecutiveIncidentsTableBody">
+                <!-- Rendered by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         VIEW 4: USER ACCESS MANAGEMENT CONSOLE (Role: ADMIN)
+         Proposal Section 2.3.2: Managing authorized user access
+         ======================================================================= -->
+    <section id="usersPane" class="tab-content-pane">
+      <div class="admin-dashboard-wrap">
+
+        <div class="ui-card" style="margin-bottom: 1.5rem; border-left: 4px solid var(--admin-accent);">
+          <div class="ui-card-title" style="font-size: 1.25rem; margin-bottom: 0.3rem;">
+            <span>👥</span> Authorized User Access Management Console
+          </div>
+          <p style="color: var(--text-secondary); font-size: 0.87rem; line-height: 1.55;">
+            Manage user authorization, view registered campus accounts, assign access tiers 
+            (General User, IT Personnel, Administrator), and control account status to enforce institutional cybersecurity governance.
+          </p>
+        </div>
+
+        <div class="ui-card">
+          <div class="ui-card-header">
+            <div class="ui-card-title">
+              <span>📋</span> Campus Authorized Users Directory
+            </div>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <span id="adminTotalUsersBadge" class="tag-badge" style="color: var(--admin-accent); border-color: rgba(245,158,11,0.4);">
+                Loading Users...
+              </span>
+              <button class="btn btn-gold" style="font-size: 0.8rem; padding: 6px 14px;" onclick="document.getElementById('authModal').classList.add('open')">
+                <span>➕</span> Authorize New User
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>Full Name</th>
+                  <th>Email Address</th>
+                  <th>Identifier</th>
+                  <th>Faculty / Department</th>
+                  <th>Authorized Role</th>
+                  <th>Account Status</th>
+                  <th>Administrative Actions</th>
+                </tr>
+              </thead>
+              <tbody id="userManagementTableBody">
+                <!-- Rendered by JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Role Explanation Box for Admin -->
+          <div style="margin-top: 1.5rem; padding: 1.1rem; background: rgba(148,163,184,0.06); border-radius: 10px; border: 1px solid var(--border-light);">
+            <div style="font-weight: 700; font-size: 0.84rem; color: var(--text-primary); margin-bottom: 0.5rem;">
+              🏛️ Institutional Role Hierarchy Governance (Proposal Section 2.3):
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.85rem; font-size: 0.78rem; color: var(--text-secondary); line-height: 1.45;">
+              <div>
+                <strong style="color: var(--accent-blue);">👤 General Users (2.3.1):</strong><br>
+                Students, lecturers, campus staff. Can report incidents, view submission confirmation, track tickets, and access basic containment instructions. No administrative access.
+              </div>
+              <div>
+                <strong style="color: var(--accent-purple);">🛠️ IT Personnel (2.3.3):</strong><br>
+                IT experts &amp; SOC engineers. Can review technical incident descriptions, examine risk scores &amp; IoCs, execute containment playbooks, and update triage status.
+              </div>
+              <div>
+                <strong style="color: var(--admin-accent);">👑 Administrators (2.3.2):</strong><br>
+                Campus security governance. Access the administrative dashboard, review stored incident records, inspect risk assessments, and manage authorized user accounts.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         VIEW 5: INCIDENT REPORTING WIZARD (UNIVERSAL)
+         Proposal Section 2.3.1: Form completion, category selection, incident details
+         ======================================================================= -->
+    <section id="reportPane" class="tab-content-pane">
+
+      <div class="ui-card" style="margin-bottom: 1.5rem; border-left: 4px solid var(--accent-blue);">
+        <div class="ui-card-title" style="font-size: 1.25rem; margin-bottom: 0.4rem;">
+          <span>📝</span> University Cyber Incident Reporting Portal
+        </div>
+        <p style="color: var(--text-secondary); font-size: 0.87rem; line-height: 1.55;">
+          Report cybersecurity incidents affecting campus services, student portals, Wi-Fi networks, 
+          computer laboratories, or administrative systems. The automated risk assessment engine will 
+          calculate the severity score and provide immediate containment guidance in real-time.
+        </p>
+      </div>
+
+      <div class="form-grid">
+
+        <!-- Main Reporting Form Column -->
+        <div class="ui-card">
+          <form id="incidentReportForm">
+
+            <!-- Incident Title -->
+            <div class="form-group">
+              <label class="form-label" for="reportTitle">
+                Incident Title / Summary <span class="required">*</span>
+              </label>
+              <input type="text" id="reportTitle" class="form-input"
+                placeholder="e.g., Phishing SMS promising tuition fee discounts via fake M-PESA portal" required>
+            </div>
+
+            <!-- Reporter Identity Block -->
+            <div style="background: rgba(148, 163, 184, 0.08); padding: 1.1rem; border-radius: 10px; margin-bottom: 1.1rem; border: 1px solid var(--border-light);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+                <span style="font-weight: 700; font-size: 0.82rem; color: var(--accent-blue);">
+                  📋 Reporter Identity (Auto-populated from Profile)
+                </span>
+                <label class="checkbox-label" style="font-weight: 600; color: var(--accent-gold); font-size: 0.82rem;">
+                  <input type="checkbox" id="reportAnonymous"> Whistleblower / Anonymous Mode
+                </label>
+              </div>
+
+              <div id="reporterIdentityFields">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                  <div class="form-group">
+                    <label class="form-label" for="reportRole">Affiliation</label>
+                    <select id="reportRole" class="form-select">
+                      <option value="STUDENT">Undergraduate / Postgraduate Student</option>
+                      <option value="IT_STAFF">Technical Crisis Operations Team</option>
+                      <option value="STAFF">Academic / Faculty Member</option>
+                      <option value="ADMIN_STAFF">Administrative Staff</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="reportName">Full Name</label>
+                    <input type="text" id="reportName" class="form-input" placeholder="Your name">
+                  </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem;">
+                  <div class="form-group">
+                    <label class="form-label" for="reportIdNum">ID / Reg Number</label>
+                    <input type="text" id="reportIdNum" class="form-input" placeholder="e.g. STD/2026/0481">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="reportDept">Department / Faculty</label>
+                    <input type="text" id="reportDept" class="form-input" placeholder="e.g. School of Technology">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="reportEmail">Campus Email</label>
+                    <input type="email" id="reportEmail" class="form-input" placeholder="user@campus.ac.ke">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Incident Classification Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="reportCategory">
+                  Incident Category <span class="required">*</span>
+                </label>
+                <select id="reportCategory" class="form-select" required>
+                  <!-- Populated by JS -->
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="reportSubcategory">
+                  Subcategory Taxonomy <span class="required">*</span>
+                </label>
+                <select id="reportSubcategory" class="form-select" required>
+                  <!-- Populated by JS -->
+                </select>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="reportAsset">
+                  Target University Asset <span class="required">*</span>
+                </label>
+                <select id="reportAsset" class="form-select" required>
+                  <!-- Populated by JS -->
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="reportSensitivity">Data Classification Involved</label>
+                <select id="reportSensitivity" class="form-select">
+                  <!-- Populated by JS -->
+                </select>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="reportScope">Operational Scope / Blast Radius</label>
+                <select id="reportScope" class="form-select">
+                  <!-- Populated by JS -->
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="reportStatus">Attack Exploitation Status</label>
+                <select id="reportStatus" class="form-select">
+                  <!-- Populated by JS -->
+                </select>
+              </div>
+            </div>
+
+            <!-- Narrative Description -->
+            <div class="form-group">
+              <label class="form-label" for="reportDescription">
+                Incident Narrative &amp; Observed Symptoms <span class="required">*</span>
+              </label>
+              <textarea id="reportDescription" class="form-textarea"
+                placeholder="Detail what occurred: what warning messages appeared, how many devices are affected, when you first noticed it, what actions you took..." required></textarea>
+            </div>
+
+            <!-- IoC Field -->
+            <div class="form-group">
+              <label class="form-label" for="reportIndicators">
+                Technical Indicators (Suspicious URLs, Email Senders, File Hashes, IP Addresses)
+              </label>
+              <input type="text" id="reportIndicators" class="form-input"
+                placeholder="e.g., http://campus-fees-portal.net | bursar.office@gmail.com | update.exe">
+            </div>
+
+            <!-- Severity Flag Checkboxes -->
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="reportCredentials">
+                <strong>Credentials Entered or Harvested</strong>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="reportFinancialLoss">
+                <strong>Financial Loss or Extortion Demanded</strong>
+              </label>
+            </div>
+
+            <!-- Evidence Attachment -->
+            <div class="form-group" style="margin-top: 0.75rem;">
+              <label class="form-label" for="reportEvidenceFile">
+                Attach Screenshot / Email Header (.eml, .png, .jpg, .txt)
+              </label>
+              <input type="file" id="reportEvidenceFile" class="form-input">
+            </div>
+
+            <div style="margin-top: 1.5rem;">
+              <button type="submit" id="submitReportBtn" class="btn btn-primary" style="width: 100%; padding: 13px; font-size: 0.95rem;">
+                🚀 Submit Cyber Incident Report &amp; Assess Risk
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Live Risk Engine Preview (Sticky) -->
+        <div>
+          <div class="live-preview-box">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="font-weight: 700; font-size: 0.84rem; color: var(--accent-blue);">
+                ⚡ Automated Risk Engine
+              </span>
+              <span class="tag-badge">Live Preview</span>
+            </div>
+
+            <div class="score-display-ring">
+              <div id="previewScoreNum" class="score-num" style="color: var(--risk-low)">25</div>
+              <div id="previewLevelText" class="score-sub" style="color: var(--risk-low)">Low Risk</div>
+              <div id="previewSlaText" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">SLA: 72 Hours</div>
+            </div>
+
+            <!-- Score Progress Bar -->
+            <div style="background: rgba(148, 163, 184, 0.18); height: 7px; border-radius: 4px; overflow: hidden; margin-bottom: 1.1rem;">
+              <div id="previewBarFill" style="height: 100%; width: 25%; background: var(--risk-low); transition: width 0.4s ease; border-radius: 4px;"></div>
+            </div>
+
+            <!-- KENET Alert -->
+            <div id="previewKenetAlert" style="display: none; padding: 8px 10px; background: rgba(239, 68, 68, 0.18); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 7px; font-size: 0.74rem; color: #fca5a5; margin-bottom: 1rem; line-height: 1.4;">
+              <!-- Dynamic alert -->
+            </div>
+
+            <div style="font-weight: 700; font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">
+              Score Factor Breakdown
+            </div>
+            <ul id="previewBreakdown" class="breakdown-list">
+              <!-- Dynamically populated -->
+            </ul>
+
+            <div style="margin-top: 1rem; padding: 10px; background: rgba(148, 163, 184, 0.08); border-radius: 7px; font-size: 0.72rem; color: var(--text-secondary); line-height: 1.45; border: 1px solid var(--border-light);">
+              💡 <em>NIST CSF 2.0 multi-factor scoring: Base Threat × Asset Weight × Data Class × Scope Radius + Active Exploit Modifiers.</em>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         VIEW 6: INCIDENT TRIAGE & MANAGEMENT (IT & ADMIN)
+         Proposal Section 2.3.2 & 2.3.3: Searching, filtering, status updates, playbooks
+         ======================================================================= -->
+    <section id="triagePane" class="tab-content-pane">
+
+      <div class="ui-card" style="border-left: 4px solid var(--tech-accent);">
+        <div class="ui-card-header">
+          <div class="ui-card-title">
+            <span>🛡️</span> Incident Triage &amp; Containment Management Console
+          </div>
+          <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <span id="triageCountBadge" class="tag-badge">0 Incidents</span>
+            <button id="exportCsvBtn" class="btn btn-secondary" style="font-size: 0.78rem; padding: 5px 12px;">
+              📊 Export CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="controls-bar">
+          <input type="text" id="triageSearch" class="search-input"
+            placeholder="🔎 Search ticket ID, title, description, or reporter name...">
+
+          <select id="triageCategoryFilter" class="select-filter">
+            <option value="ALL">All Categories</option>
+            <option value="PHISHING">Phishing &amp; Social Engineering</option>
+            <option value="MALWARE">Malware &amp; Ransomware</option>
+            <option value="UNAUTHORIZED_ACCESS">Unauthorized Access</option>
+            <option value="DATA_BREACH">Data Breach &amp; Leaks</option>
+            <option value="DENIAL_OF_SERVICE">Denial of Service</option>
+            <option value="NETWORK_INTRUSION">Network Intrusion</option>
+            <option value="INSIDER_THREAT">Insider Threat</option>
+            <option value="PHYSICAL_SECURITY">Physical Security</option>
+          </select>
+
+          <select id="triageRiskFilter" class="select-filter">
+            <option value="ALL">All Risk Levels</option>
+            <option value="CRITICAL">🔴 Critical</option>
+            <option value="HIGH">🟠 High</option>
+            <option value="MEDIUM">🟡 Medium</option>
+            <option value="LOW">🟢 Low</option>
+          </select>
+
+          <select id="triageStatusFilter" class="select-filter">
+            <option value="ALL">All Statuses</option>
+            <option value="NEW">New</option>
+            <option value="UNDER_INVESTIGATION">Under Investigation</option>
+            <option value="CONTAINED">Contained</option>
+            <option value="RESOLVED">Resolved</option>
+            <option value="CLOSED">Closed</option>
+          </select>
+        </div>
+
+        <!-- Triage Table -->
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Ticket ID</th>
+                <th>Incident Title</th>
+                <th>Category</th>
+                <th>Risk Level</th>
+                <th>Status</th>
+                <th>Reporter</th>
+                <th>Reported On</th>
+              </tr>
+            </thead>
+            <tbody id="triageTableBody">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================================
+         VIEW 7: PUBLIC TICKET TRACKER (UNIVERSAL)
+         ======================================================================= -->
+    <section id="trackerPane" class="tab-content-pane">
+
+      <!-- Page Header -->
+      <div class="ui-card" style="margin-bottom: 1.5rem; border-left: 4px solid var(--accent-cyan);">
+        <div class="ui-card-header">
+          <div class="ui-card-title">
+            <span>🔍</span> Incident Ticket Tracker
+          </div>
+          <button class="btn btn-secondary" style="font-size: 0.78rem; padding: 5px 12px;" onclick="window.refreshTracker()">
+            🔄 Refresh
+          </button>
+        </div>
+        <p style="color: var(--text-secondary); margin-top: 0.3rem; font-size: 0.87rem; line-height: 1.5;">
+          Track your submitted incident reports and review their investigation status, risk assessment and official updates.
+          Use the lookup box to find any report by its Ticket Reference ID.
+        </p>
+      </div>
+
+      <!-- Lookup by Ticket ID -->
+      <div class="ui-card" style="margin-bottom: 1.5rem;">
+        <div class="ui-card-title" style="margin-bottom: 0.75rem;"><span>🔎</span> Lookup by Ticket Reference ID</div>
+        <form id="publicTrackerForm" style="display: flex; gap: 0.75rem;">
+          <input type="text" id="trackerInputId" class="search-input"
+            placeholder="e.g. EDU-CIR-2026-0001"
+            style="font-size: 0.95rem; font-family: 'Courier New', monospace; flex: 1;" required>
+          <button type="submit" class="btn btn-primary" style="padding: 10px 20px; white-space: nowrap;">
+            🔍 Lookup
+          </button>
+        </form>
+        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.6rem;">
+          💡 Your Ticket ID was shown in the confirmation screen after submitting a report. Format: <span class="ticket-tag">EDU-CIR-2026-0001</span>
+        </div>
+
+        <div id="trackerResultBox" style="display: none; margin-top: 1.5rem;">
+          <!-- Dynamically populated by tracker.js -->
+        </div>
+      </div>
+
+      <!-- My Saved Reports (browseable) -->
+      <div class="ui-card">
+        <div class="ui-card-header">
+          <div class="ui-card-title"><span>📋</span> My Submitted Reports</div>
+          <span id="myReportsCountBadge" class="tag-badge">Loading...</span>
+        </div>
+
+        <!-- Filter bar -->
+        <div class="controls-bar" style="margin-bottom: 1rem;">
+          <input type="text" id="myReportsSearch" class="search-input"
+            placeholder="🔎 Search by ticket ID, title, or category...">
+          <select id="myReportsStatusFilter" class="select-filter">
+            <option value="ALL">All Statuses</option>
+            <option value="NEW">New</option>
+            <option value="UNDER_INVESTIGATION">Under Investigation</option>
+            <option value="CONTAINED">Contained</option>
+            <option value="RESOLVED">Resolved</option>
+            <option value="CLOSED">Closed</option>
+          </select>
+        </div>
+
+        <div id="myReportsList">
+          <!-- Rendered by tracker.js -->
+          <div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
+            <div style="font-size: 2rem; margin-bottom: 0.75rem; opacity: 0.4;">📋</div>
+            Loading your reports...
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================================
+         VIEW 8: RISK ASSESSMENT SIMULATOR (IT & ADMIN)
+         ======================================================================= -->
+    <section id="simulatorPane" class="tab-content-pane">
+
+      <div class="ui-card" style="margin-bottom: 1.5rem; border-left: 4px solid var(--accent-purple);">
+        <div class="ui-card-title" style="font-size: 1.2rem; margin-bottom: 0.4rem;">
+          <span>🧪</span> Cybersecurity Risk Assessment Rule Simulator
+        </div>
+        <p style="color: var(--text-secondary); font-size: 0.87rem; line-height: 1.55;">
+          Test hypothetical security scenarios to evaluate how asset criticality, data classification, 
+          and attack vector characteristics influence the quantitative risk score and statutory notification triggers.
+        </p>
+
+        <!-- Scenario Presets -->
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; align-items: center;">
+          <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Quick Scenarios:</span>
+          <button class="btn btn-secondary scenario-preset-btn" data-scenario="ransomware-lab"
+            style="font-size: 0.78rem; padding: 5px 12px;">🦠 Computer Lab Ransomware</button>
+          <button class="btn btn-secondary scenario-preset-btn" data-scenario="exam-leak"
+            style="font-size: 0.78rem; padding: 5px 12px;">📄 Exam Paper Leak</button>
+          <button class="btn btn-secondary scenario-preset-btn" data-scenario="phishing-blocked"
+            style="font-size: 0.78rem; padding: 5px 12px;">🛡️ Thwarted Phishing</button>
+        </div>
+      </div>
+
+      <div class="form-grid">
+
+        <!-- Simulator Parameters Column -->
+        <div class="ui-card">
+          <div style="font-weight: 700; margin-bottom: 1rem; color: var(--accent-purple); font-size: 0.9rem; display: flex; align-items: gap: 0.4rem;">
+            ⚙️ Configure Scenario Parameters
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="simCategory">Incident Category</label>
+            <select id="simCategory" class="form-select">
+              <option value="PHISHING">Phishing &amp; Social Engineering (Base: 6.0)</option>
+              <option value="MALWARE">Malware &amp; Ransomware (Base: 8.5)</option>
+              <option value="UNAUTHORIZED_ACCESS">Unauthorized Access &amp; Account Takeover (Base: 7.5)</option>
+              <option value="DATA_BREACH">Data Breach &amp; Confidentiality Leak (Base: 9.0)</option>
+              <option value="DENIAL_OF_SERVICE">Denial of Service (DoS / DDoS) (Base: 7.0)</option>
+              <option value="NETWORK_INTRUSION">Network Intrusion &amp; Scanning (Base: 6.5)</option>
+              <option value="INSIDER_THREAT">Insider Threat &amp; Policy Violation (Base: 6.0)</option>
+              <option value="PHYSICAL_SECURITY">Physical Security &amp; Hardware Theft (Base: 5.5)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="simAsset">Target University Asset</label>
+            <select id="simAsset" class="form-select">
+              <option value="EXAM_GRADING_SYSTEM">Examination &amp; Grading System (Weight: 1.50×)</option>
+              <option value="FINANCE_ERP">Finance &amp; Student Fee Collection ERP (Weight: 1.45×)</option>
+              <option value="STUDENT_PORTAL">Student Self-Service Portal (Weight: 1.35×)</option>
+              <option value="CAMPUS_NETWORK_CORE">Campus Core Network &amp; Firewall (Weight: 1.30×)</option>
+              <option value="LMS_MOODLE">Learning Management System / Moodle (Weight: 1.25×)</option>
+              <option value="UNIVERSITY_EMAIL">Institutional Email &amp; M365 (Weight: 1.20×)</option>
+              <option value="COMPUTER_LAB_PC">Computer Lab Workstations (Weight: 1.05×)</option>
+              <option value="CAMPUS_WIFI">Campus Student &amp; Guest Wi-Fi (Weight: 1.00×)</option>
+              <option value="PERSONAL_STUDENT_DEVICE">Personal Student BYOD Laptop (Weight: 0.85×)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="simSensitivity">Data Classification Involved</label>
+            <select id="simSensitivity" class="form-select">
+              <option value="EXAM_PAPERS">Examination Papers &amp; Marking Keys (Multiplier: 1.50×)</option>
+              <option value="PII_FINANCIAL">Student PII &amp; National ID / Fee Records (Multiplier: 1.40×)</option>
+              <option value="INTERNAL_CONFIDENTIAL">Internal University Communications (Multiplier: 1.15×)</option>
+              <option value="OPERATIONAL">Operational Course Materials (Multiplier: 1.00×)</option>
+              <option value="PUBLIC">Public Information Directory (Multiplier: 0.85×)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="simScope">Affected Campus Scope</label>
+            <select id="simScope" class="form-select">
+              <option value="CAMPUS_WIDE">Campus-Wide / Entire Institution (Multiplier: 1.40×)</option>
+              <option value="MULTIPLE_DEPARTMENTS">Multiple Faculties / Departments (Multiplier: 1.25×)</option>
+              <option value="SINGLE_DEPARTMENT">Single Department / Lab (Multiplier: 1.10×)</option>
+              <option value="INDIVIDUAL_ONLY">Individual Student / Staff Endpoint (Multiplier: 0.95×)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="simStatus">Attack Exploitation Status</label>
+            <select id="simStatus" class="form-select">
+              <option value="ACTIVE_ONGOING">Active &amp; Ongoing Attack (+15 pts)</option>
+              <option value="CONFIRMED_COMPROMISE">Confirmed System Compromise (+10 pts)</option>
+              <option value="SUSPECTED_ATTEMPT">Suspected Attempt / Probe (0 pts)</option>
+              <option value="THWARTED_BLOCKED">Thwarted / Blocked by Defense Controls (−12 pts)</option>
+            </select>
+          </div>
+
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="simCredentials"> Credentials Harvested (+8 pts)
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="simFinancial"> Financial / Extortion Impact (+10 pts)
+            </label>
+          </div>
+
+          <div style="margin-top: 1.25rem;">
+            <button id="runSimBtn" class="btn btn-purple" style="width: 100%;">
+              🧪 Evaluate Risk Scenario
+            </button>
+          </div>
+        </div>
+
+        <!-- Simulator Results Column -->
+        <div>
+          <div class="ui-card" id="simResultContainer">
+            <div style="text-align: center; color: var(--text-muted); padding: 3rem 1rem;">
+              <div style="font-size: 2.5rem; margin-bottom: 0.75rem; opacity: 0.4;">🧮</div>
+              <div>Click <strong style="color: var(--text-secondary);">"Evaluate Risk Scenario"</strong><br>
+              or select a Quick Scenario preset above to compute the risk score.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+  </main>
+
+
+  <!-- =========================================================================
+       FOOTER STATUS BAR
+       ========================================================================= -->
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+        <span class="footer-status-pill">System Operational</span>
+        <span>UniCERT Platform — 3-Tier Access Hierarchy: General User | IT Personnel | Administrator</span>
+      </div>
+      <div>
+        🛡️ <strong>EDU-CIR</strong> Ticket Namespace &nbsp;|&nbsp; 
+        <span style="color: var(--accent-blue);">v2.1</span> &nbsp;|&nbsp; 
+        NIST CSF 2.0 &amp; ODPC 2019
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- =========================================================================
+       MODAL: AUTH — REGISTRATION / LOGIN (3-TIER HIERARCHY)
+       ========================================================================= -->
+  <div id="authModal" class="modal-overlay">
+    <div class="modal-window" style="max-width: 680px;">
+      <div class="modal-header">
+        <h3 style="color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;">
+          <span>🔐</span> Campus User Access &amp; Role Authentication
+        </h3>
+        <button id="authModalCloseBtn" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Auth Tabs: Sign In vs Register -->
+        <div class="auth-tab-row">
+          <button id="tabSignInBtn" class="auth-tab-btn active">Sign In to Dashboard</button>
+          <button id="tabRegisterBtn" class="auth-tab-btn">Create New Account</button>
+        </div>
+
+
+        <!-- ===== SIGN IN FORM ===== -->
+        <div id="signInFormContainer">
+
+          <!-- 1-Click Demo Login Shortcuts for all 3 roles -->
+          <div class="demo-login-section">
+            <div class="demo-login-label">⚡ Fast 1-Click Demo Logins (Select Role)</div>
+            <div class="demo-btn-row" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+              <button type="button" id="demoLoginUserBtn" class="btn btn-secondary"
+                style="border-color: rgba(14, 165, 233, 0.4); color: var(--student-accent); font-size: 0.78rem; padding: 8px 6px;">
+                <span>👤</span> General User
+              </button>
+              <button type="button" id="demoLoginTechBtn" class="btn btn-secondary"
+                style="border-color: rgba(147, 51, 234, 0.4); color: var(--tech-accent); font-size: 0.78rem; padding: 8px 6px;">
+                <span>🛠️</span> IT Personnel
+              </button>
+              <button type="button" id="demoLoginAdminBtn" class="btn btn-secondary"
+                style="border-color: rgba(245, 158, 11, 0.4); color: var(--admin-accent); font-size: 0.78rem; padding: 8px 6px;">
+                <span>👑</span> Administrator
+              </button>
+            </div>
+          </div>
+
+          <!-- Credentials Form -->
+          <form id="loginForm">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin: 1.1rem 0 0.75rem; color: var(--text-muted); font-size: 0.75rem;">
+              <div style="flex: 1; height: 1px; background: var(--border-light);"></div>
+              <span>or enter your campus credentials</span>
+              <div style="flex: 1; height: 1px; background: var(--border-light);"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="loginEmail">Institutional Email Address</label>
+              <input type="email" id="loginEmail" class="form-input" placeholder="e.g. student@campus.ac.ke, tech@campus.ac.ke, admin@campus.ac.ke" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="loginPassword">Password</label>
+              <input type="password" id="loginPassword" class="form-input" placeholder="Enter your password" required>
+            </div>
+            <div style="margin-top: 1.25rem;">
+              <button type="submit" class="btn btn-primary" style="width: 100%; padding: 11px;">
+                Sign In to My Portal
+              </button>
+            </div>
+          </form>
+        </div>
+
+
+        <!-- ===== REGISTRATION FORM ===== -->
+        <div id="registerFormContainer" style="display: none;">
+          <form id="registrationForm">
+
+            <!-- Role Selection (3 Tiers) -->
+            <label class="form-label" style="margin-bottom: 0.4rem;">
+              Select Account Role (Proposal Section 2.3) <span class="required">*</span>
+            </label>
+            <div class="role-choice-boxes">
+              <div class="role-choice-box selected" data-role="GENERAL_USER">
+                <div style="font-size: 1.75rem; margin-bottom: 3px;">👤</div>
+                <strong style="color: var(--text-primary); font-size: 0.85rem; display: block;">General User</strong>
+                <p style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 2px; line-height: 1.35;">
+                  Student, lecturer, staff: report incidents &amp; view guidance
+                </p>
+              </div>
+
+              <div class="role-choice-box" data-role="IT_PERSONNEL">
+                <div style="font-size: 1.75rem; margin-bottom: 3px;">🛠️</div>
+                <strong style="color: var(--text-primary); font-size: 0.85rem; display: block;">IT Personnel</strong>
+                <p style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 2px; line-height: 1.35;">
+                  Technical expert: triage, IoCs, risk scores &amp; SOP playbooks
+                </p>
+              </div>
+
+              <div class="role-choice-box" data-role="ADMIN">
+                <div style="font-size: 1.75rem; margin-bottom: 3px;">👑</div>
+                <strong style="color: var(--text-primary); font-size: 0.85rem; display: block;">Administrator</strong>
+                <p style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 2px; line-height: 1.35;">
+                  Governance: manage access, audit records &amp; compliance
+                </p>
+              </div>
+            </div>
+
+            <!-- Full Name -->
+            <div class="form-group">
+              <label class="form-label" for="regName">Full Legal Name <span class="required">*</span></label>
+              <input type="text" id="regName" class="form-input" placeholder="e.g. Naomi Kerubo Onyambu" required>
+            </div>
+
+            <!-- Email + Password -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              <div class="form-group">
+                <label class="form-label" for="regEmail">Campus Email <span class="required">*</span></label>
+                <input type="email" id="regEmail" class="form-input" placeholder="user@campus.ac.ke" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="regPassword">Password <span class="required">*</span></label>
+                <input type="password" id="regPassword" class="form-input" placeholder="Create a password" required>
+              </div>
+            </div>
+
+            <!-- ID + Department -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              <div class="form-group">
+                <label class="form-label" for="regIdentifier">Student Reg No / Staff ID</label>
+                <input type="text" id="regIdentifier" class="form-input" placeholder="e.g. 24/05290 or ICT/099">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="regDept">Faculty / Department</label>
+                <input type="text" id="regDept" class="form-input" placeholder="e.g. School of Technology">
+              </div>
+            </div>
+
+            <div style="margin-top: 1.25rem;">
+              <button type="submit" class="btn btn-primary" style="width: 100%; padding: 11px;">
+                🚀 Create Account &amp; Enter Portal
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       MODAL: INCIDENT SUBMISSION CONFIRMATION
+       ========================================================================= -->
+  <div id="confirmationModal" class="modal-overlay">
+    <div class="modal-window" style="max-width: 640px;">
+      <div class="modal-header">
+        <h3 style="color: var(--risk-low); display: flex; align-items: center; gap: 0.5rem; font-size: 1.05rem;">
+          <span>✅</span> Incident Reported Successfully
+        </h3>
+        <button id="confirmModalCloseBtn" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+
+        <div style="text-align: center; padding: 1rem 0; border-bottom: 1px solid var(--border-light); margin-bottom: 1.25rem;">
+          <div style="font-size: 0.8rem; color: var(--text-secondary);">Your Unique Incident Reference ID:</div>
+          <div id="confirmTicketId" class="ticket-tag" style="font-size: 1.75rem; display: inline-block; margin: 0.5rem 0; padding: 4px 14px;">
+            EDU-CIR-2026-XXXX
+          </div>
+          <div style="display: flex; justify-content: center; gap: 0.5rem; align-items: center; margin-top: 0.25rem;">
+            <span style="font-size: 0.84rem; color: var(--text-secondary);">Assigned Risk:</span>
+            <span id="confirmRiskBadge" class="badge">CRITICAL</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
+            Save this reference ID to track your incident status in the "Track Ticket" tab.
+          </p>
+        </div>
+
+        <div>
+          <h4 style="font-size: 0.9rem; color: var(--text-primary); margin-bottom: 0.5rem;">
+            ⚠️ Immediate User Containment Steps:
+          </h4>
+          <ul id="confirmReporterSteps" style="list-style: none;">
+            <!-- Populated by JS -->
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="document.getElementById('confirmationModal').classList.remove('open')">
+          I Understand — Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       MODAL: INCIDENT DETAIL & IT TRIAGE DOSSIER
+       ========================================================================= -->
+  <div id="incidentDetailModal" class="modal-overlay">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <span id="modalTicketId" class="ticket-tag" style="font-size: 0.95rem;">EDU-CIR-XXXX</span>
+          <h3 id="modalIncidentTitle" style="color: var(--text-primary); margin-top: 4px; font-size: 1.1rem;">Incident Title</h3>
+        </div>
+        <button id="modalCloseCrossBtn" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Risk & Status Row -->
+        <div style="display: flex; gap: 0.65rem; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
+          <span id="modalRiskBadge" class="badge">Risk</span>
+          <span id="modalStatusBadge" class="badge badge-status">Status</span>
+          <span style="font-size: 0.78rem; color: var(--text-muted);">
+            Response SLA: <strong id="modalSla" style="color: var(--text-primary);">SLA</strong>
+          </span>
+        </div>
+
+        <!-- Details Grid -->
+        <div style="background: rgba(148,163,184,0.08); border-radius: 9px; padding: 1rem; margin-bottom: 1.1rem; border: 1px solid var(--border-light);">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; font-size: 0.84rem;">
+            <div><strong style="color: var(--text-secondary);">Target Asset:</strong> <span id="modalAsset"></span></div>
+            <div><strong style="color: var(--text-secondary);">Campus Scope:</strong> <span id="modalScope"></span></div>
+          </div>
+          <div style="margin-top: 0.75rem; font-size: 0.84rem;" id="modalReporterDetails">
+            <!-- Reporter details -->
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div style="margin-bottom: 1.1rem;">
+          <h4 style="font-size: 0.88rem; color: var(--accent-blue); margin-bottom: 0.35rem;">📄 Narrative Description</h4>
+          <p id="modalDescription" style="font-size: 0.84rem; color: var(--text-primary); line-height: 1.55; background: rgba(148,163,184,0.07); padding: 0.75rem; border-radius: 7px;"></p>
+        </div>
+
+        <!-- IoCs -->
+        <div style="margin-bottom: 1.1rem;">
+          <h4 style="font-size: 0.88rem; color: var(--accent-blue); margin-bottom: 0.35rem;">🔎 Technical Indicators of Compromise (IoCs)</h4>
+          <div id="modalIndicators" style="font-family: 'Courier New', monospace; font-size: 0.84rem; color: var(--text-primary); background: rgba(148,163,184,0.1); padding: 0.75rem; border-radius: 7px; word-break: break-all;"></div>
+        </div>
+
+        <!-- Reporter Recommendations -->
+        <div class="rec-section">
+          <div class="rec-header">
+            <span>🛡️ Instructions Issued to Incident Reporter</span>
+            <span class="tag-badge">User Containment</span>
+          </div>
+          <ul id="modalReporterActionsList" style="list-style: none;">
+            <!-- Populated by JS -->
+          </ul>
+        </div>
+
+        <!-- IT Playbook (IT Personnel & Admin Only) -->
+        <div id="modalItPlaybookSection" class="rec-section" style="margin-top: 0.75rem;">
+          <div class="rec-header" style="background: rgba(245,158,11,0.12); border-color: rgba(245,158,11,0.35);">
+            <span style="color: var(--accent-gold);">⚡ Technical Security Response Playbook (NIST CSF 2.0 Respond SOP)</span>
+            <span class="tag-badge">Crisis Protocol</span>
+          </div>
+          <ul id="modalItPlaybookList" style="list-style: none;">
+            <!-- Populated by JS -->
+          </ul>
+        </div>
+
+        <!-- Compliance Notice -->
+        <div id="modalComplianceNotice" style="margin-top: 1rem; padding: 12px; background: rgba(244,63,94,0.12); border: 1px solid rgba(244,63,94,0.35); border-radius: 8px; font-size: 0.82rem;">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Triage Controls (IT Personnel & Admin Only) -->
+        <div id="modalTriageControlsSection" style="margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+          <h4 style="font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem;">
+            🛡️ SOC Triage &amp; Assignment Management
+          </h4>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Update Incident Status</label>
+              <select id="modalStatusSelect" class="form-select">
+                <option value="NEW">NEW (Unreviewed)</option>
+                <option value="UNDER_INVESTIGATION">UNDER INVESTIGATION</option>
+                <option value="CONTAINED">CONTAINED (Quarantined)</option>
+                <option value="RESOLVED">RESOLVED (Eradicated)</option>
+                <option value="CLOSED">CLOSED (Post-Incident Review Done)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Assigned Technical Supervisor</label>
+              <input type="text" id="modalAssigneeInput" class="form-input" placeholder="e.g. Kenneth Ochieng">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Add Investigation Log Note</label>
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <input type="text" id="modalNoteAuthorInput" class="form-input" placeholder="Author / unit" value="Technical Supervisor">
+              <input type="text" id="modalNewNoteInput" class="form-input" placeholder="Enter findings, containment action taken...">
+            </div>
+          </div>
+
+          <!-- Notes History -->
+          <div style="margin-top: 0.75rem;">
+            <label class="form-label">Investigation Audit Trail:</label>
+            <div id="modalAuditNotesList">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button id="exportKenetBtn" class="btn btn-secondary" style="border-color: var(--accent-gold); color: var(--accent-gold);">
+          <span>📄</span> Generate KENET-CERT Dossier
+        </button>
+        <button id="closeModalBtn" class="btn btn-secondary">Cancel</button>
+        <button id="saveModalChangesBtn" class="btn btn-primary">Save Changes &amp; Log Note</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       MODAL: FORMAL KENET-CERT PRINTABLE DOSSIER
+       ========================================================================= -->
+  <div id="kenetDossierModal" class="modal-overlay">
+    <div class="modal-window" style="max-width: 900px; background: #ffffff;">
+      <div class="modal-header" style="background: #f8fafc; border-bottom: 1px solid #e2e8f0;">
+        <h3 style="color: #0f172a; font-size: 1.05rem;">Official Incident Notification Dossier</h3>
+        <button id="closeKenetDossierBtn" class="modal-close-btn" style="color: #374151;">&times;</button>
+      </div>
+      <div class="modal-body" id="kenetDossierContent" style="padding: 0;">
+        <!-- Rendered by JS -->
+      </div>
+      <div class="modal-footer" style="background: #f8fafc; border-top: 1px solid #e2e8f0;">
+        <button id="printKenetBtn" class="btn btn-primary"><span>🖨️</span> Print / Save as PDF</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('kenetDossierModal').classList.remove('open')">Close</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       SYSTEM SCRIPTS
+       ========================================================================= -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/reporting-form.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/triage.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/simulator.js"></script>
+  <script src="js/report-exporter.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

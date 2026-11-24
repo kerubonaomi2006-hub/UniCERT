@@ -1,0 +1,23 @@
+{
+  "name": "cyber-incident-reporting-system",
+  "version": "1.0.0",
+  "description": "Cyber Incident Reporting and Risk Assessment System for Higher Education Institutions (UniCERT)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/test-engine.js"
+  },
+  "keywords": [
+    "cybersecurity",
+    "incident-reporting",
+    "risk-assessment",
+    "nist-csf",
+    "kenet-cert",
+    "higher-education"
+  ],
+  "author": "Naomi Kerubo Onyambu (Reg No: 24/05290)",
+  "license": "MIT",
+  "dependencies": {
+    "pg": "^8.23.1"
+  }
+}
